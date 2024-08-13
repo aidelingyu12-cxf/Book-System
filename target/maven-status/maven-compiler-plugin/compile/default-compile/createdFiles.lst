@@ -1,0 +1,4 @@
+com\exapmle\dao\UserDao.class
+com\exapmle\service\AdminServlet.class
+com\exapmle\util\DBUtil.class
+com\exapmle\bean\User.class
