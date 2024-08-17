@@ -19,12 +19,64 @@ function loadData() {
     getCalenda();
     //
     getBookList();
-    
+
+    //
+    //doCarousel();
+
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
+
+    
   }
 
 }
+
+
+function doCarousel(){
+  var bookWrap = document.querySelectorAll(".booklist-wrap")[0];
+  var booklist = document.querySelectorAll(".booklist-wrap > a");
+  var mainLen = document.getElementsByTagName("main")[0].offsetWidth;
+  var bookWidth = booklist[0].offsetWidth;
+  var bookLenth = booklist.length;
+  var totalLen = bookWidth*bookLenth;
+  var lft = 0;
+  let timer;
+
+  bookWrap.onmouseenter = function(){
+    clearInterval(timer);
+  }
+
+  bookWrap.onmouseleave = function(){
+    play();
+  }
+
+  function play(){
+    timer = setInterval(() => {
+      if(totalLen + bookWrap.offsetLeft <= mainLen){
+        lft = 0;
+        console.log(bookWrap.style.left);
+      }
+      lft -= 5;
+      bookWrap.style.left = lft + "px";
+      
+    }, 20);
+  }
+
+}
+
+
+
+function changePic(books, left, width){
+  for(var i=0; i<=books.length-1; i++){
+    if(books.length-i-1 <=12 ){
+      console.log(books.length-i-1);
+      clearInterval(changePic);
+    }
+    books[i].setAttribute("style","left:" + left + "px");
+  }
+  //console.log(left);
+}
+
 
 
 window.onscroll=function(){
@@ -55,7 +107,7 @@ window.onscroll=function(){
 function getBookList() {
   var xhttp = new XMLHttpRequest();
   var xhttpResp = null;
-  xhttp.open("GET", "http://localhost:3000/bookDataList", false);
+  xhttp.open("GET", "http://localhost:3000/bookDataList/", false);
   xhttp.send();
   if (xhttp.status == 200 && xhttp.readyState == 4) {
     xhttpResp = JSON.parse(xhttp.responseText);
@@ -104,6 +156,7 @@ function getHeaderList() {
       a = document.createElement("a");
       img = document.createElement("img");
       img.setAttribute("src", xhttpResp[i]["pic"]);
+      a.setAttribute("href","/");
       a.innerText = xhttpResp[i]["title"];
       li.appendChild(img);
       li.appendChild(a);

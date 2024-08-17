@@ -1,20 +1,32 @@
 {
 	"headerDataList":[
-		{"pic":"../pic/header-list1.png",
+		{"pic":"../pic/headerList/category.png",
 		 "title":"分类"},
-		{"pic":"../pic/header-list2.png",
+		{"pic":"../pic/headerList/header-list2.png",
 		 "title":"开搜AI搜索"},
-		{"pic":"../pic/header-list3.png",
+		{"pic":"../pic/headerList/header-list3.png",
 		 "title":"免费AI视频"},
-		{"pic":"../pic/header-list4.png",
+		{"pic":"../pic/headerList/header-list4.png",
 		 "title":"免费CHATGPT"}
 	],
 	"bookDataList":[
-		{"pic":"../pic/book-list1.png"},
-		{"pic":"../pic/book-list2.png"},
-		{"pic":"../pic/book-list3.png"},
-		{"pic":"../pic/book-list4.png"},
-		{"pic":"../pic/book-list5.png"}
+		{"pic":"../pic/bookList/book-list1.png"},
+		{"pic":"../pic/bookList/book-list2.png"},
+		{"pic":"../pic/bookList/book-list3.png"},
+		{"pic":"../pic/bookList/book-list4.png"},
+		{"pic":"../pic/bookList/book-list5.png"},
+		{"pic":"../pic/bookList/book-list6.png"},
+		{"pic":"../pic/bookList/book-list7.png"},
+		{"pic":"../pic/bookList/book-list8.png"},
+		{"pic":"../pic/bookList/book-list9.png"},
+		{"pic":"../pic/bookList/book-list10.png"},
+		{"pic":"../pic/bookList/book-list11.png"},
+		{"pic":"../pic/bookList/book-list12.png"},
+		{"pic":"../pic/bookList/book-list13.png"},
+		{"pic":"../pic/bookList/book-list14.png"},
+		{"pic":"../pic/bookList/book-list15.png"},
+		{"pic":"../pic/bookList/book-list16.png"},
+		{"pic":"../pic/bookList/book-list17.png"}
 	],
 	"catalogList":[
 		{"id": "1",
