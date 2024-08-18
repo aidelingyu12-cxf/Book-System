@@ -1,9 +1,9 @@
 
 
 var _PageHeight = document.documentElement.clientHeight,
-    _PageWidth = document.documentElement.clientWidth;
+  _PageWidth = document.documentElement.clientWidth;
 var _LoadingTop = _PageHeight > 61 ? (_PageHeight - 61) / 2 : 0,
-    _LoadingLeft = _PageWidth > 215 ? (_PageWidth - 215) / 2 : 0;
+  _LoadingLeft = _PageWidth > 215 ? (_PageWidth - 215) / 2 : 0;
 var _LoadingHtml = '<div id="loadingDiv" style="position:absolute;left:0;width:100%;height:' + _PageHeight + 'px;top:0;background:#f3f8ff;opacity:1;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: ' + _LoadingLeft + 'px; top:' + _LoadingTop + 'px; width: auto; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">页面加载中，请等待...</div></div>';
 document.write(_LoadingHtml);
 
@@ -21,87 +21,55 @@ function loadData() {
     getBookList();
 
     //
-    //doCarousel();
+    doCarousel();
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
 
-    
+
   }
 
 }
 
 
-function doCarousel(){
-  var bookWrap = document.querySelectorAll(".booklist-wrap")[0];
-  var booklist = document.querySelectorAll(".booklist-wrap > a");
+function doCarousel() {
+  var bookWrap = document.querySelectorAll(".booklist-inner")[0];
+  var booklist = document.querySelectorAll(".booklist-inner > a");
   var mainLen = document.getElementsByTagName("main")[0].offsetWidth;
   var bookWidth = booklist[0].offsetWidth;
   var bookLenth = booklist.length;
-  var totalLen = bookWidth*bookLenth;
-  var lft = 0;
+  var totalLen = bookWidth * bookLenth;
+  var lft = 10;
   let timer;
 
-  bookWrap.onmouseenter = function(){
+  bookWrap.onmouseenter = function () {
     clearInterval(timer);
   }
 
-  bookWrap.onmouseleave = function(){
+  bookWrap.onmouseleave = function () {
     play();
   }
 
-  function play(){
+  function play() {
     timer = setInterval(() => {
-      if(totalLen + bookWrap.offsetLeft <= mainLen){
+      lft -= 1;
+      if (totalLen + bookWrap.offsetLeft - bookLenth <= mainLen) {
         lft = 0;
-        console.log(bookWrap.style.left);
+
       }
-      lft -= 5;
+      if (-lft >= bookWidth) {
+        var tempNode = bookWrap.children[0].cloneNode(true);
+        bookWrap.appendChild(tempNode);
+        bookWrap.removeChild(bookWrap.children[0]);
+        console.log(lft);
+        lft = 0;
+      }
+
       bookWrap.style.left = lft + "px";
-      
     }, 20);
   }
 
 }
-
-
-
-function changePic(books, left, width){
-  for(var i=0; i<=books.length-1; i++){
-    if(books.length-i-1 <=12 ){
-      console.log(books.length-i-1);
-      clearInterval(changePic);
-    }
-    books[i].setAttribute("style","left:" + left + "px");
-  }
-  //console.log(left);
-}
-
-
-
-window.onscroll=function(){
-  var topScroll =document.documentElement.scrollTop;//滚动的距离,距离顶部的距离
-  var bignav  = document.getElementsByClassName("main-right")[0];//获取到导航栏id
-  if(topScroll > 150){  //当滚动距离大于250px时执行下面的东西
-    var top = document.getElementsByTagName("header")[0].offsetHeight + "px";
-    var left = document.getElementsByClassName("main-left")[0].clientWidth + "px";
-      bignav.style.position = 'fixed';
-      bignav.style.top = top;
-      bignav.style.left = left;
-      bignav.style.right = 0;
-      bignav.style.bottom = 0;
-      bignav.style.zIndex = '9999';
-      bignav.style.flex = '1';
-  }else{//当滚动距离小于250的时候执行下面的内容，也就是让导航栏恢复原状
-      bignav.style.position = 'static';
-  }
-}
-
-// function sleep2(ms) {
-//   return new Promise(function(resolve, reject) {
-//       setTimeout(resolve, ms)
-//   })
-// }
 
 
 function getBookList() {
@@ -111,7 +79,7 @@ function getBookList() {
   xhttp.send();
   if (xhttp.status == 200 && xhttp.readyState == 4) {
     xhttpResp = JSON.parse(xhttp.responseText);
-    catalist = document.getElementsByClassName("booklist-wrap")[0];
+    catalist = document.getElementsByClassName("booklist-inner")[0];
     for (var i = 0; i < xhttpResp.length; i++) {
       a = document.createElement("a");
       a.setAttribute("href", "/");
@@ -156,7 +124,7 @@ function getHeaderList() {
       a = document.createElement("a");
       img = document.createElement("img");
       img.setAttribute("src", xhttpResp[i]["pic"]);
-      a.setAttribute("href","/");
+      a.setAttribute("href", "");
       a.innerText = xhttpResp[i]["title"];
       li.appendChild(img);
       li.appendChild(a);
@@ -235,4 +203,16 @@ function getCalenda() {
 
     }
   }
+}
+
+function doOpenRegisterDialog(){
+  console.log("ss");
+}
+
+function doOpenLoginDialog(){
+  
+}
+
+function doCheckSearchKeyWords(){
+  console.log(123);
 }

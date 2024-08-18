@@ -20,28 +20,29 @@
           </ul>
         </div>
         <div class="header-navi-formWrap">
-          <form class="header-navi-form" action="/search/result" method="get">
+          <div class="header-navi-form">
             <input type="search" class="header-navi-input header-navi-form-child" placeholder="書籍検索...">
-            <button class="header-navi-btn header-navi-form-child" value="">
+            <button class="header-navi-btn header-navi-form-child" onclick="doCheckSearchKeyWords()">
               検索
             </button>
             </input>
-          </form>
+          </div>
         </div>
       </header-navi>
       <header-login>
-        <div class="header-navi-register header-login-child">
-          <img src="../pic/login-icon.png">
-          register
-        </div>
-        <div class="header-navi-login header-login-child">
+        <div class="header-navi-register header-login-child" onclick="doOpenRegisterDialog()">
           <img src="../pic/register-icon.png">
-          login
+          <a href="javascript:;">レジスター</a>
+        </div>
+        <div class="header-navi-login header-login-child" onclick="doOpenLoginDialog()">
+          <img src="../pic/login-icon.png">
+          <a href="javascript:;">ログイン</a>
         </div>
       </header-login>
     </header>
     <main>
       <div class="booklist-wrap">
+        <div class="booklist-inner"></div>
       </div>
       <div class="main-split">
       </div>
@@ -90,6 +91,10 @@
         </div>
       </div>
     </main>
+    <footer class="footer">
+      <p>この検索サイトは日本語のみ対応しています。</p>
+      <p>©2024 テスト出版社 Test Publishing Organization</p>
+    </footer>
   </container>
 </body>
 

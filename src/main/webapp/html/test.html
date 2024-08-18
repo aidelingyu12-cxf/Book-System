@@ -7,28 +7,51 @@
   <script>
 
   </script>
+  <style>
+    .divChild{
+        width: 200px;
+        flex-shrink: 0;
+        
+    }
+    .divParent{
+        height: 80px;
+
+        background-color: red;
+        position: relative;
+        left: 0;
+        
+    }
+    .list{
+        overflow: hidden;
+
+        height: 80px;
+        width: 500px;
+        
+    }
+  </style>
 </head>
 
 <body style="display: flex;align-items: center;justify-content: center;">
-    <div style="display: flex;height: 80px;width: 300px;background-color: red;overflow: hidden;position: relative;">
-        test
-        <div style="background-color: yellow;height: 80px;width: 150px;">
-            test1
-        </div>
-        <div style="background-color: aqua;height: 80px;width: 150px;">
-            test2
-        </div>
-        <div style="background-color: gray;height: 80px; width: 150px;">
-            test3
-        </div>
-        <div style="background-color: blue;height: 80px; width: 150px;">
-            test4
-        </div>
-        <div style="background-color: green;height: 80px; width: 150px;">
-            test5
-        </div>
-        <div style="background-color: rgb(128, 128, 128);height: 80px; width: 150px;">
-            test6
+    <div class="list">
+        <div style="display: flex;" class="divParent">
+            <div style="background-color: yellow;" class="divChild">
+                test1
+            </div>
+            <div style="background-color: aqua;" class="divChild">
+                test2
+            </div>
+            <div style="background-color: gray;" class="divChild">
+                test3
+            </div>
+            <div style="background-color: blue;" class="divChild">
+                test4
+            </div>
+            <div style="background-color: green;" class="divChild">
+                test5
+            </div>
+            <div style="background-color: rgb(128, 128, 128);" class="divChild">
+                test6
+            </div>
         </div>
     </div>
 </body>

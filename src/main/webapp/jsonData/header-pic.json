@@ -1,13 +1,15 @@
 {
 	"headerDataList":[
 		{"pic":"../pic/headerList/category.png",
-		 "title":"分类"},
+		 "title":"カテゴリー"},
 		{"pic":"../pic/headerList/header-list2.png",
-		 "title":"开搜AI搜索"},
+		 "title":"ディスカバリー"},
 		{"pic":"../pic/headerList/header-list3.png",
-		 "title":"免费AI视频"},
+		 "title":"ランキング"},
 		{"pic":"../pic/headerList/header-list4.png",
-		 "title":"免费CHATGPT"}
+		 "title":"本を借りる"},
+		{"pic":"../pic/headerList/header-list5.png",
+		 "title":"本を返す"}
 	],
 	"bookDataList":[
 		{"pic":"../pic/bookList/book-list1.png"},
