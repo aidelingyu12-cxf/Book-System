@@ -12,16 +12,7 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
     //
-    getHeaderList();
-    //左側本のカタログを取得する
     getCatalog();
-    //カレンダーを設定する
-    getCalenda();
-    //
-    getBookList();
-
-    //
-    doCarousel();
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
@@ -31,6 +22,10 @@ function loadData() {
 
 }
 
+function hidefooter(){
+  var pagination = document.getElementsByClassName(".pagination")[0];
+  pagination.style.display = "";
+}
 
 function doCarousel() {
   var bookWrap = document.querySelectorAll(".booklist-inner")[0];
@@ -75,19 +70,51 @@ function doCarousel() {
 
 function getBookList() {
   var xhttp = new XMLHttpRequest();
-  var xhttpResp = null;
-  xhttp.open("GET", "http://localhost:3000/bookDataList/", false);
+  xhttp.open("GET", "http://localhost:3000/bookDataList", false);
   xhttp.send();
-  if (xhttp.status == 200 && xhttp.readyState == 4) {
+  if( xhttp.status == 200 && xhttp.readyState == 4){
     xhttpResp = JSON.parse(xhttp.responseText);
-    catalist = document.getElementsByClassName("booklist-inner")[0];
-    for (var i = 0; i < xhttpResp.length; i++) {
-      a = document.createElement("a");
-      a.setAttribute("href", "/");
-      img = document.createElement("img");
+    var ul = document.getElementsByClassName("right-main-bookList-ul")[0];
+    for(var i=0; i< 5; i++){
+      //
+      var li = document.createElement("li");
+
+      //書籍写真
+      var picDiv = document.createElement("div");
+      var img = document.createElement("img");
+      picDiv.classList.add("li-pic");
+      picDiv.classList.add("li-child");
+      li.classList.add("right-main-bookList-li");
       img.setAttribute("src", xhttpResp[i]["pic"]);
-      a.appendChild(img);
-      catalist.appendChild(a);
+      img.setAttribute("style", "height:100%");
+      picDiv.appendChild(img);
+      li.appendChild(picDiv);
+      ul.appendChild(li);
+      //書籍情報
+      var infoDiv = document.createElement("div");
+      infoDiv.classList.add("infoDiv");
+      var infoh3 = document.createElement("h3");
+      var infop1 = document.createElement("p");
+      var infop2 = document.createElement("p");
+      var infop3 = document.createElement("p");
+      infoh3.textContent = xhttpResp[i]["title"];
+      infop1.textContent = "著：" + xhttpResp[i]["author"];
+      infop2.textContent = "出版社：" + xhttpResp[i]["publisher"];
+      infop3.textContent = "到着日：" + xhttpResp[i]["arriveDay"];
+      infoDiv.appendChild(infoh3);
+      infoDiv.appendChild(infop1);
+      infoDiv.appendChild(infop2);
+      infoDiv.appendChild(infop3);
+      li.appendChild(infoDiv);
+      //書籍詳細
+      var detailDiv = document.createElement("div");
+      var lidetail = document.createElement("div");
+      lidetail.classList.add("li-detail");
+      detailDiv.classList.add("div-detail");
+      detailDiv.textContent = "書籍詳細";
+      lidetail.appendChild(detailDiv);
+      li.appendChild(lidetail);
+      
     }
 
   }
@@ -100,13 +127,12 @@ function getCatalog() {
   xhttp.send();
   if (xhttp.status == 200 && xhttp.readyState == 4) {
     xhttpResp = JSON.parse(xhttp.responseText);
-    catalist = document.getElementsByClassName("main-left")[0];
+    catalist = document.getElementsByClassName("middle-category")[0];
     for (var i = 0; i < xhttpResp.length; i++) {
-      p = document.createElement("p");
       cata = document.createElement("a");
+      cata.setAttribute("href", xhttpResp[i]["url"]);
       cata.innerText = xhttpResp[i]["cata"];
-      p.appendChild(cata);
-      catalist.appendChild(p);
+      catalist.appendChild(cata);
     }
 
   }
@@ -138,73 +164,6 @@ function getHeaderList() {
 }
 
 
-//カレンダー
-function getCalenda() {
-  var date = new Date();
-  var year = date.getFullYear();
-  var month = date.getMonth();
-  var lastMonth = (month == -1) ? 11 : month - 1;
-  //今日の日付
-  var firstDay = new Date(year, month, 1);
-  //今月の最後の日の日付
-  var lastDay = new Date(year, month + 1, 0).getDate();
-  //前月最後の日の日付
-  var lastMonthLastDay = new Date(year, lastMonth + 1, 0).getDate();
-  //前月最後の日の日付
-  var thisMonthLastDay = new Date(year, lastMonth, 0);
-  var array = new Array();
-  var dateMap = {
-    "日曜日": 0, "月曜日": 1, "火曜日": 2, "水曜日": 3,
-    "木曜日": 4, "金曜日": 5, "土曜日": 6
-  }
-
-  const formatter = new Intl.DateTimeFormat('ja-JP', { weekday: 'long' });
-  const dayOfWeek = formatter.format(firstDay);
-  var innerArray = new Array();
-  var j = dateMap[dayOfWeek];
-
-  //header
-  for (var i = j - 1; i >= 0; i--) {
-    innerArray[i] = lastMonthLastDay;
-    lastMonthLastDay = lastMonthLastDay - 1;
-  }
-  //middle
-  for (var i = 1; i <= lastDay; i++) {
-    if (j > 6) {
-      j = 0;
-      array.push(innerArray);
-      innerArray = new Array();
-    }
-    innerArray[j] = i;
-    j = j + 1;
-  }
-  //trailer
-  for (var i = 0, j = 1; i <= 6; i++) {
-    if (innerArray[i] == null) {
-      innerArray[i] = j;
-      j = j + 1;
-    }
-  }
-
-  if (innerArray.length != 0) {
-    array.push(innerArray);
-  }
-
-  var tbd = document.getElementsByTagName('tbody')[0];
-  for (var i = 0; i < array.length; i++) {
-    var inner = array[i];
-    var newRow = document.createElement("tr");
-    for (var j = 0; j < inner.length; j++) {
-      var newCell = document.createElement("td");
-      var newA = document.createElement("a");
-      newRow.appendChild(newCell);
-      newCell.appendChild(newA);
-      tbd.appendChild(newRow);
-      newCell.innerHTML += "<a class='innerA' onclick=getBooksByDate()>" + inner[j] + "</a>";
-
-    }
-  }
-}
 
 function doOpenRegisterDialog(){
   console.log("ss");

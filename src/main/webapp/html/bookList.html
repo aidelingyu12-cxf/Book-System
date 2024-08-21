@@ -4,8 +4,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>図書管理システム</title>
-  <link rel="stylesheet" type="text/css" href="../css/discovery.css" />
-  <script src="../js/discovery.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/bookList.css" />
+  <script src="../js/bookList.js"></script>
 </head>
 
 <body>
@@ -40,34 +40,49 @@
         </div>
       </header-login>
     </header>
-    <middle>
-      <div class="middle-category">
-        <span>カテゴリー:</span>
-      </div>
-      <ul class="middle-nav">
-        <li>
-          <a>新着順</a>
-        </li>
-        <li>
-          <a>人気書籍</a>
-        </li>
-        <li>
-          <a>おすすめ</a>
-        </li>
-        <li>
-          <a>コレクション</a>
-        </li>
-      </ul>
-    </middle>
     <main>
-      <div class="main-content">
-        <div class="bookList">
-          <div class="book">
-            <a></a>
-            <img>
+      <div class="booklist-wrap">
+        <div class="booklist-inner"></div>
+      </div>
+      <div class="main-split">
+      </div>
+      <div class="main-main">
+        <div class="main-left">
+          <div class="main-left-header">
+            カタログ
+          </div>
+        </div>
+        <div class="main-right">
+          <div class="right-main-header">
+            <h1>新着情報カレンダー 2024年08月</h1>
+            <h2>全21件</h2>
+          </div>
+          <div class="right-main-bookList">
+            <ul class="right-main-bookList-ul">
+              <!-- <li class="right-main-bookList-li">
+                <div class="li-pic li-child"></div>
+                <div class="li-info li-child"></div>
+                <div class="li-detail li-child"></div>
+              </li> -->
+            </ul>
+          </div>
+          <div class="pagination">
+            <div class="pages">
+              <div>
+                <button class="pages-start pages-fixed"><</button>
+              </div>
+              <ul>
+                <li class="pages-fixed">1</li>
+                <li class="pages-fixed">2</li>
+              </ul>
+              <div>
+                <button class="pages-start pages-fixed">></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     </main>
     <footer class="footer">
       <p>この検索サイトは日本語のみ対応しています。</p>
