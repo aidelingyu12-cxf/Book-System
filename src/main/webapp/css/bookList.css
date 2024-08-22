@@ -167,7 +167,6 @@ container {
 
   .main-main {
     display: flex;
-    height: 1000px;
 
     .main-left {
       width: 260px;

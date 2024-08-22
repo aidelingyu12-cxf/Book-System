@@ -163,8 +163,12 @@ container {
 
 .middle-category{
   height: 33px;
-  margin: 10px 24px 15px;
+  margin: 15px 24px 30px;
   font-size: 15px;
+
+  span{
+    margin-right: 10px;
+  }
   a{
     color: #333;
     margin: 0 12px;
@@ -198,27 +202,42 @@ container {
 }
 
 .main-content{
-  height: 1845px;
-  margin: 15px 15px 0 15px;
-  padding-top: 15px;
-  background-color: aqua;
-  .book{
-    width: 170px;
-    height: 274px;
 
-    img{
-      width: 170px;
-      height: 224px;
-      border-radius: 6px;
-      background-color: yellow;
-      box-shadow: 0px 1px 3px rgba(0,0,0,.2);
+  margin: 5px 15px 0 15px;
+  padding-top: 15px;
+  .bookList{
+    display: flex;
+    flex-wrap: wrap;
+    .book{
+      width: 164px;
+      height: 274px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img{
+        width: 140px;
+        height: 224px;
+        border-radius: 6px;
+        background-color: yellow;
+        box-shadow: 0px 1px 3px rgba(0,0,0,.2);
+      }
+      .text-a{
+        margin-top: 10px;
+        color: #333;
+        text-decoration: none;
+      }
+      .pic-a{
+
+      }
     }
   }
+
 }
 
   .pagination {
     height: 100px;
-    width: 1000px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;

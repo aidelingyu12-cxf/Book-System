@@ -31,45 +31,6 @@ function hidefooter(){
   pagination.style.display = "";
 }
 
-function doCarousel() {
-  var bookWrap = document.querySelectorAll(".booklist-inner")[0];
-  var booklist = document.querySelectorAll(".booklist-inner > a");
-  var mainLen = document.getElementsByTagName("main")[0].offsetWidth;
-  var bookWidth = booklist[0].offsetWidth;
-  var bookLenth = booklist.length;
-  var totalLen = bookWidth * bookLenth;
-  var lft = 10;
-  let timer;
-  
-  play();
-  bookWrap.onmouseenter = function () {
-    clearInterval(timer);
-  }
-
-  bookWrap.onmouseleave = function () {
-    play();
-  }
-
-  function play() {
-    timer = setInterval(() => {
-      lft -= 1;
-      if (totalLen + bookWrap.offsetLeft - bookLenth <= mainLen) {
-        lft = 0;
-
-      }
-      if (-lft >= bookWidth) {
-        var tempNode = bookWrap.children[0].cloneNode(true);
-        bookWrap.appendChild(tempNode);
-        bookWrap.removeChild(bookWrap.children[0]);
-        console.log(lft);
-        lft = 0;
-      }
-
-      bookWrap.style.left = lft + "px";
-    }, 20);
-  }
-
-}
 
 
 function getBookList() {

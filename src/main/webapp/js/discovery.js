@@ -11,8 +11,10 @@ document.onreadystatechange = loadData;
 
 function loadData() {
   if (document.readyState == "complete") {
-    //
+
     getCatalog();
+
+    getBookList();
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
@@ -27,45 +29,6 @@ function hidefooter(){
   pagination.style.display = "";
 }
 
-function doCarousel() {
-  var bookWrap = document.querySelectorAll(".booklist-inner")[0];
-  var booklist = document.querySelectorAll(".booklist-inner > a");
-  var mainLen = document.getElementsByTagName("main")[0].offsetWidth;
-  var bookWidth = booklist[0].offsetWidth;
-  var bookLenth = booklist.length;
-  var totalLen = bookWidth * bookLenth;
-  var lft = 10;
-  let timer;
-  
-  play();
-  bookWrap.onmouseenter = function () {
-    clearInterval(timer);
-  }
-
-  bookWrap.onmouseleave = function () {
-    play();
-  }
-
-  function play() {
-    timer = setInterval(() => {
-      lft -= 1;
-      if (totalLen + bookWrap.offsetLeft - bookLenth <= mainLen) {
-        lft = 0;
-
-      }
-      if (-lft >= bookWidth) {
-        var tempNode = bookWrap.children[0].cloneNode(true);
-        bookWrap.appendChild(tempNode);
-        bookWrap.removeChild(bookWrap.children[0]);
-        console.log(lft);
-        lft = 0;
-      }
-
-      bookWrap.style.left = lft + "px";
-    }, 20);
-  }
-
-}
 
 
 function getBookList() {
@@ -74,96 +37,60 @@ function getBookList() {
   xhttp.send();
   if( xhttp.status == 200 && xhttp.readyState == 4){
     xhttpResp = JSON.parse(xhttp.responseText);
-    var ul = document.getElementsByClassName("right-main-bookList-ul")[0];
-    for(var i=0; i< 5; i++){
+    var bookList = document.getElementsByClassName("bookList")[0];
+    for(var i=0; i< xhttpResp.length; i++){
       //
-      var li = document.createElement("li");
+      var book = document.createElement("div");
+      book.classList.add("book");
 
+      var a1 = document.createElement("a");
+      a1.classList.add("pic-a");
+      a1.setAttribute("href", xhttpResp[i]["url"]);
       //書籍写真
-      var picDiv = document.createElement("div");
       var img = document.createElement("img");
-      picDiv.classList.add("li-pic");
-      picDiv.classList.add("li-child");
-      li.classList.add("right-main-bookList-li");
       img.setAttribute("src", xhttpResp[i]["pic"]);
-      img.setAttribute("style", "height:100%");
-      picDiv.appendChild(img);
-      li.appendChild(picDiv);
-      ul.appendChild(li);
-      //書籍情報
-      var infoDiv = document.createElement("div");
-      infoDiv.classList.add("infoDiv");
-      var infoh3 = document.createElement("h3");
-      var infop1 = document.createElement("p");
-      var infop2 = document.createElement("p");
-      var infop3 = document.createElement("p");
-      infoh3.textContent = xhttpResp[i]["title"];
-      infop1.textContent = "著：" + xhttpResp[i]["author"];
-      infop2.textContent = "出版社：" + xhttpResp[i]["publisher"];
-      infop3.textContent = "到着日：" + xhttpResp[i]["arriveDay"];
-      infoDiv.appendChild(infoh3);
-      infoDiv.appendChild(infop1);
-      infoDiv.appendChild(infop2);
-      infoDiv.appendChild(infop3);
-      li.appendChild(infoDiv);
-      //書籍詳細
-      var detailDiv = document.createElement("div");
-      var lidetail = document.createElement("div");
-      lidetail.classList.add("li-detail");
-      detailDiv.classList.add("div-detail");
-      detailDiv.textContent = "書籍詳細";
-      lidetail.appendChild(detailDiv);
-      li.appendChild(lidetail);
+      //link
+      var a2 = document.createElement("a");
+      a2.classList.add("text-a");
+      a2.setAttribute("href", xhttpResp[i]["url"]);
+      a2.innerText = xhttpResp[i]["title"];
+
+      a1.appendChild(img);
+      book.appendChild(a1);
+      book.appendChild(a2);
+      bookList.appendChild(book);
+
       
     }
 
   }
 }
 
+
+
 function getCatalog() {
   var xhttp = new XMLHttpRequest();
   var xhttpResp = null;
+  var data = 0;
   xhttp.open("GET", "http://localhost:3000/catalogList", false);
   xhttp.send();
   if (xhttp.status == 200 && xhttp.readyState == 4) {
     xhttpResp = JSON.parse(xhttp.responseText);
     catalist = document.getElementsByClassName("middle-category")[0];
-    for (var i = 0; i < xhttpResp.length; i++) {
+    if(xhttpResp.length > 15){
+      data = 15
+    }else{
+      data = xhttpResp;
+    }
+    for (var i = 0; i < data; i++) {
       cata = document.createElement("a");
-      cata.setAttribute("href", xhttpResp[i]["url"]);
       cata.innerText = xhttpResp[i]["cata"];
+      cata.setAttribute("href", xhttpResp[i]["url"]);
       catalist.appendChild(cata);
     }
 
   }
 }
-
-function getHeaderList() {
-  var xhttp = new XMLHttpRequest();
-  var xhttpResp = null;
-  var ul = document.getElementsByClassName("header-navi-ul")[0];
-  xhttp.open("GET", "http://localhost:3000/headerDataList", false);
-  xhttp.send();
-  if (xhttp.status == 200 && xhttp.readyState == 4) {
-    xhttpResp = JSON.parse(xhttp.response);
-    for (var i = 0; i < xhttpResp.length; i++) {
-      li = document.createElement("li");
-      a = document.createElement("a");
-      img = document.createElement("img");
-      img.setAttribute("src", xhttpResp[i]["pic"]);
-      a.setAttribute("href", "");
-      a.innerText = xhttpResp[i]["title"];
-      li.appendChild(img);
-      li.appendChild(a);
-      ul.appendChild(li);
-    }
-    var xhttpResp = JSON.parse(xhttp.responseText);
-
-  }
-
-}
-
-
 
 function doOpenRegisterDialog(){
   console.log("ss");
