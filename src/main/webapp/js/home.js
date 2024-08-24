@@ -62,7 +62,6 @@ function doCarousel() {
         var tempNode = bookWrap.children[0].cloneNode(true);
         bookWrap.appendChild(tempNode);
         bookWrap.removeChild(bookWrap.children[0]);
-        console.log(lft);
         lft = 0;
       }
 
@@ -83,7 +82,10 @@ function getBookList() {
     catalist = document.getElementsByClassName("booklist-inner")[0];
     for (var i = 0; i < xhttpResp.length; i++) {
       a = document.createElement("a");
-      a.setAttribute("href", "/");
+      a.setAttribute("href", "javascript:;");
+      a.addEventListener("click", function(){
+        console.log(this);
+      });
       img = document.createElement("img");
       img.setAttribute("src", xhttpResp[i]["pic"]);
       a.appendChild(img);

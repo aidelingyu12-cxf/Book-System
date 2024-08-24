@@ -87,7 +87,7 @@ header {
 
       .header-navi-btn {
         margin-left: -18px;
-        width: 64px;
+        width: 72px;
         font-weight: bold;
         border: solid 1px rgba(0, 0, 0, .08);
         letter-spacing: 0.5rem;
@@ -272,6 +272,10 @@ main {
       tbody>tr>td {}
     }
   }
+}
+
+bottom{
+  height: 25px;
 }
 
 footer{
