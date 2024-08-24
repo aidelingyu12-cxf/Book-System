@@ -160,61 +160,191 @@ container {
 
   }
 
-  .main-wrap{
+  .main-wrap {
     justify-content: center;
     background-color: #e3e6e9;
   }
-  .bookDetail-wrap{
+
+  .otherDetail-wrap {
+    margin: 30px 70px 0 70px;
+    background-color: white;
+    border-radius: 6px;
+
+    .other-title {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      background-color: #eff1f7;
+
+      span {
+        display: inline-block;
+        margin-left: 30px;
+        color: #006fcc;
+      }
+    }
+
+    .related-books {
+      display: flex;
+      flex-wrap: wrap;
+      width: 1149px;
+
+      .related-book {
+        margin: 30px 0 10px 48px;
+        width: 142px;
+        height: 220px;
+
+        img {
+          width: 142px;
+          height: 182px;
+        }
+      }
+
+    }
+  }
+
+  .bookDetail-wrap {
     height: 436px;
     padding: 0 30px 30px 30px;
     margin: 30px 70px 0 70px;
     background-color: white;
     border-radius: 6px;
-    .bookDetail-child{
-    }
-    .bookDetail-title{
+
+    .bookDetail-child {}
+
+    .bookDetail-title {
       height: 28px;
       margin-bottom: 10px;
       padding-top: 26px;
-      span{
+
+      .inventory {
+        margin-left: 10px;
+        padding: 0 7px;
+        line-height: 18px;
+        border-radius: 3px;
+        background: #62a0ed;
+        font-size: 14px;
+        color: #fff;
+        font-weight: 400;
+      }
+
+      span {
         font-size: 24px;
         font-weight: 700;
         color: #333;
       }
+
     }
-    .bookDetail-header{
-      height: 35px;
-      font-weight: 700;
-      padding: 0 20px;
-      span{
-        color: #1a659e;
+
+    .bookDetail-header {
+      margin: 0 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: solid 1px #eee;
+
+      .bookDetail-div {
+        width: 98px;
+        height: 35px;
+        font-weight: 700;
+        border-top-color: #409eff;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          color: #1a659e;
+          font-size: 14px;
+          margin: 0 20px 0 20px;
+        }
       }
+
     }
-    .bookDetail-info{
+
+    .bookDetail-info {
       height: 303px;
       padding-top: 20px;
       display: flex;
-      .bookDetail-info-left{
+
+      .bookDetail-info-left {
         margin-left: 20px;
         width: 914px;
-        strong{
+
+        strong {
           display: inline-block;
           width: 110px;
           margin-right: 10px;
           font-size: 14px;
           line-height: 24px;
         }
-        span{
+
+        span {
           line-height: 24px;
           font-size: 14px;
         }
-      }
-      .bookDetail-info-right{
-        margin-left: 20px;
-        img{
-          width: 146px;
-          height: 186px;
+
+        .saveAndLikebtn {
+          font-size: 14px;
+          width: 68px;
+          height: 30px;
+          border-radius: 3px;
+          color: #1a659e;
+          border: solid 1px #1a659e;
+          margin-top: 30px;
         }
+
+        .collect-btn {}
+
+        .like-btn {
+          margin-left: 20px;
+        }
+      }
+
+      .bookDetail-info-right {
+        margin-left: 20px;
+
+        .right-pic {
+          img {
+            width: 146px;
+            height: 186px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+          }
+        }
+
+        .right-view {
+          margin-bottom: 10px;
+          display: flex;
+
+          img {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+          }
+
+          p {
+            margin-left: 10px;
+          }
+        }
+
+        .right-like {
+          .star {
+            width: 20px;
+            height: 20px;
+            background-color: rgb(233, 171, 57);
+            display: inline-block;
+            clip-path: polygon(50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%);
+          }
+        }
+
       }
     }
   }

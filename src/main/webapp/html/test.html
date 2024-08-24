@@ -1,59 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html style="height: 100%;">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>図書管理システム</title>
-  <script>
-
-  </script>
-  <style>
-    .divChild{
-        width: 200px;
-        flex-shrink: 0;
-        
-    }
-    .divParent{
-        height: 80px;
-
-        background-color: red;
-        position: relative;
-        left: 0;
-        
-    }
-    .list{
-        overflow: hidden;
-
-        height: 80px;
-        width: 500px;
-        
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS 五角星</title>
+<style>
+  .star {
+    width: 100px;
+    height: 100px;
+    background-color: #f0e68c;
+    display: inline-block;
+    clip-path: polygon(
+      50% 0%, 
+      61% 35%, 
+      98% 35%, 
+      68% 57%, 
+      79% 91%, 
+      50% 70%, 
+      21% 91%, 
+      32% 57%, 
+      2% 35%, 
+      39% 35%
+    );
+  }
+</style>
 </head>
-
-<body style="display: flex;align-items: center;justify-content: center;">
-    <div class="list">
-        <div style="display: flex;" class="divParent">
-            <div style="background-color: yellow;" class="divChild">
-                test1
-            </div>
-            <div style="background-color: aqua;" class="divChild">
-                test2
-            </div>
-            <div style="background-color: gray;" class="divChild">
-                test3
-            </div>
-            <div style="background-color: blue;" class="divChild">
-                test4
-            </div>
-            <div style="background-color: green;" class="divChild">
-                test5
-            </div>
-            <div style="background-color: rgb(128, 128, 128);" class="divChild">
-                test6
-            </div>
-        </div>
-    </div>
+<body>
+  
 </body>
-
 </html>
