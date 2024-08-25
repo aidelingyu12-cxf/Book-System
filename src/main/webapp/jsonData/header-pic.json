@@ -184,6 +184,30 @@
 		 "cata":"社会・ビジネス",
 		 "url":"/"}
 		
+	],
+	"bookDetail":[
+		{
+		 "title":"Harry Potter and the Prisoner of Azkaban",
+		 "inventory": "130",
+		 "likes": "9.5",
+		 "watched": "132",
+		 "type": "hardcover",
+		 "pic":"../pic/bookList/book-list1.png",
+		 "detail": {
+			 "publisher": "Pottermore Publishing",
+			 "isbn": "9781781100233",
+			 "language": "English",
+			 "Dimensions": "‎16 x 4.06 x 23.11 cm",
+			 "pages": "336",
+			 "version": "1",
+			 "weight": "1.05kg",
+			 "price": "1500円（本体）",
+			 "publishDay": "2015/12/08",
+			 "author": "J. K. Rowling",
+			 "arriveDay": "2023/12/08",
+			 "comments": "恐ろしい監獄アズカバンから、脱獄した凶悪犯が、ホグワーツ校に潜入した・・・。ハリーの命が危ない!?大ベストセラー新装版ハリー・ポッターは13歳の夏休み、恐ろしい監獄アズカバンから、凶悪犯が脱獄したというニュースを聞く。新学期のホグワーツ魔法魔術学校では、脱獄犯を追う吸魂鬼(ディメンター)たちがうろつく。ハグリッドのペットが、ドラコにけがをさせ大問題に。ハーマイオニーの猫は、ロンのネズミをつけねらい、おかげで二人は大げんか。ハリーにつきまとう死神犬(グリム)の影。凶悪犯はハリーの命をねらっている!?"
+		 }
+		}
 	]
 	
 }

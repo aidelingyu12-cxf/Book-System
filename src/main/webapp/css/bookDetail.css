@@ -187,15 +187,21 @@ container {
       display: flex;
       flex-wrap: wrap;
       width: 1149px;
-
+      margin-top: 20px;
       .related-book {
-        margin: 30px 0 10px 48px;
+        margin: 0 0 10px 48px;
         width: 142px;
-        height: 220px;
-
+        height: 238px;
         img {
           width: 142px;
           height: 182px;
+        }
+        span{
+          width: 142px;
+          height: 42px;
+          display: inline-block;
+          text-align: center;
+          margin-top: 10px;
         }
       }
 
@@ -203,7 +209,6 @@ container {
   }
 
   .bookDetail-wrap {
-    height: 436px;
     padding: 0 30px 30px 30px;
     margin: 30px 70px 0 70px;
     background-color: white;
@@ -214,12 +219,10 @@ container {
     .bookDetail-title {
       height: 28px;
       margin-bottom: 10px;
-      padding-top: 26px;
-
+      padding-top: 22px;
       .inventory {
-        margin-left: 10px;
+        margin: 0 0 0 10px;
         padding: 0 7px;
-        line-height: 18px;
         border-radius: 3px;
         background: #62a0ed;
         font-size: 14px;
@@ -228,6 +231,7 @@ container {
       }
 
       span {
+        display: inline-block;
         font-size: 24px;
         font-weight: 700;
         color: #333;
@@ -261,27 +265,39 @@ container {
     }
 
     .bookDetail-info {
-      height: 303px;
       padding-top: 20px;
       display: flex;
 
       .bookDetail-info-left {
         margin-left: 20px;
         width: 914px;
-
-        strong {
-          display: inline-block;
-          width: 110px;
-          margin-right: 10px;
-          font-size: 14px;
-          line-height: 24px;
+        display: flex;
+        flex-direction: column;
+        p{
+          display: flex;
+          margin-top: 2px;
+          strong {
+            display: inline-block;
+            width: 110px;
+            margin-right: 10px;
+            font-size: 14px;
+            line-height: 24px;
+          }
+  
+          span {
+            display: inline-block;
+            line-height: 24px;
+            font-size: 14px;
+            width: 794px;
+          }
         }
 
-        span {
-          line-height: 24px;
-          font-size: 14px;
+        .comments{
+          margin-bottom: 10px;
         }
+        .div-btn{
 
+        }
         .saveAndLikebtn {
           font-size: 14px;
           width: 68px;
@@ -289,7 +305,7 @@ container {
           border-radius: 3px;
           color: #1a659e;
           border: solid 1px #1a659e;
-          margin-top: 30px;
+          margin: 30px 0 30px 0;
         }
 
         .collect-btn {}
@@ -330,6 +346,7 @@ container {
           .star {
             width: 20px;
             height: 20px;
+            margin-bottom: 6px;
             background-color: rgb(233, 171, 57);
             display: inline-block;
             clip-path: polygon(50% 0%,
@@ -342,6 +359,28 @@ container {
                 32% 57%,
                 2% 35%,
                 39% 35%);
+          }
+        }
+        .right-point{
+          height: 30px;
+          display: flex;
+          margin-bottom: 6px;
+          .right-point-point{
+            color: rgb(233, 171, 57);
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 18px;
+          }
+          .right-point-star{
+            display: flex;
+            flex-direction: column;
+            span{
+              display: inline-block;
+              font-size: 15px;
+              font-weight: 700;
+              line-height: 22px;
+            }
+
           }
         }
 
