@@ -7,9 +7,7 @@
 		{"pic":"../pic/headerList/header-list3.png",
 		 "title":"ランキング"},
 		{"pic":"../pic/headerList/header-list4.png",
-		 "title":"本を借りる"},
-		{"pic":"../pic/headerList/header-list5.png",
-		 "title":"本を返す"}
+		 "title":"書籍管理システム"}
 	],
 	"bookDataList":[
 		{"pic":"../pic/bookList/book-list1.png",
