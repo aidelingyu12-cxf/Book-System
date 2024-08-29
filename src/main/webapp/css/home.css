@@ -143,9 +143,12 @@ header {
 
     .header-navi-register {
       margin-right: 12px;
+      display: none;
     }
 
-    .header-navi-login {}
+    .header-navi-login {
+      
+    }
   }
 }
 
