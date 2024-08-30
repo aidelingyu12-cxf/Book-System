@@ -1,1 +1,7 @@
 .idea
+.settings
+.smarttomcat
+.classpath
+.project
+/target/
+/bin/
