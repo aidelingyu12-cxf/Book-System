@@ -24,7 +24,7 @@ request.setAttribute("path", basePath);
       <header-navi>
         <div class="header-navi-titleUl">
           <a class="header-navi-title" href="/" title="図書管理システム">
-            <img class="header-navi-pic" src="../pic/headerList/header-navi-pic.png" alt="図書管理システム · BookSystem">
+            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.png" alt="図書管理システム · BookSystem">
           </a>
           <ul class="header-navi-ul">
           </ul>
@@ -41,11 +41,11 @@ request.setAttribute("path", basePath);
       </header-navi>
       <header-login>
         <div class="header-navi-register header-login-child" onclick="doOpenRegisterDialog()">
-          <img src="../pic/register-icon.png">
+          <img src="pic/register-icon.png">
           <a href="javascript:;">レジスター</a>
         </div>
         <div class="header-navi-login header-login-child" onclick="doOpenLoginDialog()">
-          <img src="../pic/login-icon.png">
+          <img src="pic/login-icon.png">
           <a href="javascript:;">ログイン</a>
         </div>
       </header-login>
@@ -54,6 +54,7 @@ request.setAttribute("path", basePath);
       <div class="booklist-wrap">
         <div class="booklist-inner">
         	<c:forEach items="${requestScope.bookList}" var="book">
+        		<c:set var="str" value="Hello" />
         		<a href="javascript:;">
         			<img src="${book.getPicture()}">
         		</a>
