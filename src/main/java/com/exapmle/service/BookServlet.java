@@ -6,6 +6,8 @@ package com.exapmle.service;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,11 +25,15 @@ public class BookServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.setCharacterEncoding("utf-8");
 		BookDao bookDao = new BookDao();
 		List<Book> bookList = bookDao.getHeaderBooks();
-		System.out.print(bookList.size());
-		System.out.print(bookList);
-		super.doGet(req, resp);
+		req.setAttribute("bookList", bookList);
+		ServletContext servletContext = getServletContext();
+		RequestDispatcher dispatcher = servletContext.
+					getRequestDispatcher("/jsp/home.jsp");
+		dispatcher.forward(req, resp);
+		//super.doGet(req, resp);
 	}
 
 	@Override

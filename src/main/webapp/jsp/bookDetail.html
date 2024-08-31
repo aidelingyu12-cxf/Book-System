@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="height: 100%;">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>図書管理システム</title>
+  <link rel="stylesheet" type="text/css" href="../css/bookDetail.css" />
+  <script src="../js/bookDetail.js"></script>
+</head>
+
+<body>
+  <container>
+    <header>
+      <header-navi>
+        <div class="header-navi-titleUl">
+          <a class="header-navi-title" href="/" title="図書管理システム">
+            <img class="header-navi-pic" src="../pic/headerList/header-navi-pic.png" alt="図書管理システム · BookSystem">
+          </a>
+          <ul class="header-navi-ul">
+          </ul>
+        </div>
+        <div class="header-navi-formWrap">
+          <div class="header-navi-form">
+            <input type="search" class="header-navi-input header-navi-form-child" placeholder="書籍検索...">
+            <button class="header-navi-btn header-navi-form-child" onclick="doCheckSearchKeyWords()">
+              &nbsp;検索
+            </button>
+            </input>
+          </div>
+        </div>
+      </header-navi>
+      <header-login>
+        <div class="header-navi-register header-login-child" onclick="doOpenRegisterDialog()">
+          <img src="../pic/register-icon.png">
+          <a href="javascript:;">レジスター</a>
+        </div>
+        <div class="header-navi-login header-login-child" onclick="doOpenLoginDialog()">
+          <img src="../pic/login-icon.png">
+          <a href="javascript:;">ログイン</a>
+        </div>
+      </header-login>
+    </header>
+    <main>
+      <div class="main-wrap">
+        <div class="bookDetail-wrap">
+          <div class="bookDetail-title bookDetail-child">
+            <span></span>
+            <span class="inventory"></span>
+          </div>
+          <div class="bookDetail-header bookDetail-child">
+            <div class="bookDetail-div">
+              <span>書籍情報</span>
+            </div>
+          </div>
+          <div class="bookDetail-info bookDetail-child">
+            <div class="bookDetail-info-left">
+              <p>
+                <strong>出版社:</strong>
+                <span class="publisher"></span>
+              </p>
+              <p>
+                <strong>ISBN:</strong>
+                <span class="isbn"></span>
+              </p>
+              <p>
+                <strong>言語:</strong>
+                <span class="language"></span>
+              </p>
+              <p>
+                <strong>判型:</strong>
+                <span class="Dimensions"></span>
+              </p>
+              <p>
+                <strong>バージョン:</strong>
+                <span class="version"></span>
+              </p>
+              <p>
+                <strong>ページ数:</strong>
+                <span class="pages"></span>
+              </p>
+              <p>
+                <strong>定価:</strong>
+                <span class="price"></span>
+              </p>
+              <p>
+                <strong>発行年月日:</strong>
+                <span class="publishDay"></span>
+              </p>
+              <p>
+                <strong>入庫日:</strong>
+                <span class="arriveDay"></span>
+              </p>
+              <p>
+                <strong>著者:</strong>
+                <span class="author"></span>
+              </p>
+              
+              <p>
+                <strong>コメント:</strong>
+                <span class="comments"></span>
+              </p>
+              <div class="div-btn">
+                <button class="collect-btn saveAndLikebtn">保存</button>
+                <button class="like-btn saveAndLikebtn">いいね！</button>
+              </div>
+            </div>
+            <div class="bookDetail-info-right">
+              <div class="right-point">
+
+                <div class="right-point-star">
+                  <span>総合評価：</span>
+
+                </div>
+                <div class="right-point-point"></div>
+              </div>
+              <div class="right-like">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+              </div>
+              <div class="right-pic">
+                <img>
+              </div>
+              <div class="right-view">
+                <img src="../pic/view.png">
+                <p src="../pic/view.png"></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- <div class="main-wrap">
+      <div class="otherDetail-wrap">
+        <div class="other-title other-child">
+          <span>ハリーポッター</span>
+          <span class="inventory">在庫数: 100</span>
+        </div>
+
+      </div>
+
+     </div> -->
+
+      <div class="main-wrap">
+        <div class="otherDetail-wrap relatedBooks-wrap">
+          <div class="other-title other-child">
+            <span>ハリーポッター</span>
+            <span class="inventory">在庫数: 100</span>
+          </div>
+
+          <div class="related-books">
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+            </div>
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+              <span>ハリーポッターrelated-book</span>
+            </div>
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+            </div>
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+            </div>
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+            </div>
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+            </div>
+            <div class="related-book">
+              <img src="../pic/bookList/book-list15.png">
+              <span>related-bookrelated-bookrelated-book</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+    <bottom>
+    </bottom>
+    <footer class="footer">
+      <p>この検索サイトは日本語のみ対応しています。</p>
+      <p>©2024 テスト出版社 Test Publishing Organization</p>
+    </footer>
+  </container>
+</body>
+
+</html>
