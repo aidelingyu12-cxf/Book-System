@@ -10,9 +10,13 @@ public class DBUtil {
     private static final String url="jdbc:mysql://localhost:3306/booksystem?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT&useSSL=false";
     private static final String username="root";
     private static final String password="123456";
+    private static Connection conn=null;
 
     public static Connection getConnection() {
-        Connection conn=null;
+    	
+    	if(conn != null) {
+    		return conn;
+    	}
         try {
             Class.forName(driver);				//ドライバーの注入
             conn = DriverManager.getConnection(url,username,password);//コネクションを取得する

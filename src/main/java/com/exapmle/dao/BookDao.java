@@ -16,7 +16,7 @@ public class BookDao {
         Connection conn = DBUtil.getConnection();
         String sql = "select book_name,book_id,comment,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
-        		+ "author,subtitle,picture,series from book limit 10";
+        		+ "author,subtitle,picture,category from book limit 10";
         PreparedStatement ps = null;
         List<Book> bookList = new ArrayList<Book>();
         try{
@@ -37,9 +37,9 @@ public class BookDao {
     
     public List<Book> getHeaderBooks(){
         Connection conn = DBUtil.getConnection();
-        String sql = "select book_name,book_id,comment,ISBN,press,"
+        String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
-        		+ "author,subtitle,picture,series from book limit 20";
+        		+ "author,subtitle,picture,category from book limit 20";
         PreparedStatement ps = null;
         List<Book> bookList = new ArrayList<Book>();
         try{

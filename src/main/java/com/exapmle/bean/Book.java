@@ -8,6 +8,7 @@ public class Book {
 	private String bookId;
 	private String comment;
 	private String ISBN;
+	private String ASIN;
 	private String press;
 	private String version;
 	private Integer page;
@@ -17,7 +18,7 @@ public class Book {
 	private String author;
 	private String subtitle;
 	private String picture;
-	private String series;
+	private String category;
 	
 	public String getBookName() {
 		return bookName;
@@ -42,6 +43,12 @@ public class Book {
 	}
 	public void setISBN(String iSBN) {
 		ISBN = iSBN;
+	}
+	public String getASIN() {
+		return ASIN;
+	}
+	public void setASIN(String aSIN) {
+		ASIN = aSIN;
 	}
 	public String getPress() {
 		return press;
@@ -97,11 +104,11 @@ public class Book {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public String getSeries() {
-		return series;
+	public String getCategory() {
+		return category;
 	}
-	public void setSeries(String series) {
-		this.series = series;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 	

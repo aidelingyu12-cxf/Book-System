@@ -14,7 +14,7 @@ request.setAttribute("path", basePath);
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>図書管理システム</title>
-  <link rel="stylesheet" type="text/css" href="css/home.css" />
+  <link rel="stylesheet" type="text/css" href="css1/home.css" />
   <script src="js1/home.js"></script>
 </head>
 
@@ -24,9 +24,25 @@ request.setAttribute("path", basePath);
       <header-navi>
         <div class="header-navi-titleUl">
           <a class="header-navi-title" href="/" title="図書管理システム">
-            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.png" alt="図書管理システム · BookSystem">
+            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.jpg" alt="図書管理システム · BookSystem">
           </a>
           <ul class="header-navi-ul">
+          	<li>
+          		<img src="pic/headerList/category.png">
+          		<a href="http://localhost:8080/Book-System/book">カテゴリー</a>
+          	</li>
+         	<li>
+         		<img src="pic/headerList/header-list2.png">
+         		<a href="jsp/discovery.html">ディスカバリー</a>
+         	</li>
+         	<li>
+         		<img src="pic/headerList/header-list3.png">
+         		<a href="jsp/ranking.html">ランキング</a>
+         	</li>
+         	<li>
+         		<img src="pic/headerList/header-list4.png">
+         		<a href="javascript:;">書籍管理システム</a>
+         	</li>
           </ul>
         </div>
         <div class="header-navi-formWrap">
@@ -68,6 +84,11 @@ request.setAttribute("path", basePath);
           <div class="main-left-header">
             カタログ
           </div>
+          <c:forEach var="category" items="${requestScope.categoryList}">
+          	<p>
+          		<a>${category.getName()}</a>
+          	</p>
+          </c:forEach>
         </div>
         <div class="main-right">
           <div class="right-main-header">

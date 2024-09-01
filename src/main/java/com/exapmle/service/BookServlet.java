@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exapmle.bean.Book;
+import com.exapmle.bean.Category;
 import com.exapmle.dao.BookDao;
+import com.exapmle.dao.CategoryDao;
 
 /**
  * 
@@ -27,8 +29,11 @@ public class BookServlet extends HttpServlet {
 		
 		req.setCharacterEncoding("utf-8");
 		BookDao bookDao = new BookDao();
+		CategoryDao categoryDao = new CategoryDao();
 		List<Book> bookList = bookDao.getHeaderBooks();
+		List<Category> categoryList = categoryDao.getCategorys();
 		req.setAttribute("bookList", bookList);
+		req.setAttribute("categoryList", categoryList);
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
 					getRequestDispatcher("/jsp/home.jsp");
