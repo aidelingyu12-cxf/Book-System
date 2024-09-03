@@ -27,7 +27,7 @@ request.setAttribute("path", basePath);
             <img class="header-navi-pic" src="pic/headerList/header-navi-pic.jpg" alt="図書管理システム · BookSystem">
           </a>
           <ul class="header-navi-ul">
-          	<li>
+          	<li class="header-navi-ul-category">
           		<img src="pic/headerList/category.png">
           		<a href="http://localhost:8080/Book-System/book">カテゴリー</a>
           	</li>
@@ -71,7 +71,7 @@ request.setAttribute("path", basePath);
         <div class="booklist-inner">
         	<c:forEach items="${requestScope.bookList}" var="book">
         		<c:set var="str" value="Hello" />
-        		<a href="javascript:;">
+        		<a href="http://localhost:8080/Book-System/bookDetail?bookId=${book.getBookId()}">
         			<img src="${book.getPicture()}">
         		</a>
         	</c:forEach>

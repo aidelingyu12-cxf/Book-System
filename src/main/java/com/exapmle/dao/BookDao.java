@@ -12,27 +12,37 @@ import com.exapmle.util.DBUtil;
 
 public class BookDao {
 
-    public List<Book> getBookInfo(String username, String password){
+    public Book getBookDetail(String bookId){
         Connection conn = DBUtil.getConnection();
-        String sql = "select book_name,book_id,comment,ISBN,press,"
+        String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
-        		+ "author,subtitle,picture,category from book limit 10";
+        		+ "author,subtitle,picture,category from book";
         PreparedStatement ps = null;
-        List<Book> bookList = new ArrayList<Book>();
+        Book book = new Book();
         try{
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-            	Book book = new Book();
-            	book.setBookName(sql);
-            	book.setAuthor(sql);
-            	book.setPicture(sql);
-            	bookList.add(book);
+            	book.setBookId(rs.getString("book_id"));
+            	book.setBookName(rs.getString("book_name"));
+            	book.setComment(rs.getString("comment"));
+            	book.setASIN(rs.getString("ASIN"));
+            	book.setISBN(rs.getString("ISBN"));
+            	book.setPress(rs.getString("press"));
+            	book.setVersion(rs.getString("version"));
+            	book.setPage(rs.getInt("page"));
+            	book.setPrice(rs.getFloat("price"));
+            	book.setPublishDate(rs.getDate("publish_date"));
+            	book.setSaleDate(rs.getDate("sale_date"));
+            	book.setAuthor(rs.getString("author"));
+            	book.setSubtitle(rs.getString("subtitle"));
+            	book.setPicture(rs.getString("picture"));
+            	book.setCategory(rs.getString("category"));
             }
         }catch(SQLException exception){
             exception.printStackTrace();
         }
-        return bookList;
+        return book;
     }
     
     public List<Book> getHeaderBooks(){
@@ -47,6 +57,7 @@ public class BookDao {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
             	Book book = new Book();
+            	book.setBookId(rs.getString("book_id"));
             	book.setBookName(rs.getString("book_name"));
             	book.setAuthor(rs.getString("author"));
             	book.setPicture(rs.getString("picture"));

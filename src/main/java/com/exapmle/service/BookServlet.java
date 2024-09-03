@@ -23,9 +23,8 @@ import com.exapmle.dao.CategoryDao;
  */
 
 public class BookServlet extends BaseServlet {
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+	protected void book(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
 		BookDao bookDao = new BookDao();
@@ -37,6 +36,21 @@ public class BookServlet extends BaseServlet {
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
 					getRequestDispatcher("/jsp/home.jsp");
+		dispatcher.forward(req, resp);
+		//super.doGet(req, resp);
+	}
+	
+	protected void booDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("utf-8");
+		String bookId = req.getParameter("id");
+		BookDao bookDao = new BookDao();
+		Book book = new Book();
+		book = bookDao.getBookDetail(bookId);
+		req.setAttribute("bookDetail", book);
+		ServletContext servletContext = getServletContext();
+		RequestDispatcher dispatcher = servletContext.
+					getRequestDispatcher("/jsp/bookDetail.jsp");
 		dispatcher.forward(req, resp);
 		//super.doGet(req, resp);
 	}

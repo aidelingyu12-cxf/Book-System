@@ -12,9 +12,9 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
     //
-    getHeaderList();
+    //getHeaderList();
 
-    getBookDetail();
+    //getBookDetail();
 
 
     var loadingMask = document.getElementById('loadingDiv');
