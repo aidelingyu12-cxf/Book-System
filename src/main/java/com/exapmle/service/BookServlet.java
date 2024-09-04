@@ -40,20 +40,34 @@ public class BookServlet extends BaseServlet {
 		//super.doGet(req, resp);
 	}
 	
-	protected void booDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void bookDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
-		String bookId = req.getParameter("id");
+		String bookId = req.getParameter("bookId");
 		BookDao bookDao = new BookDao();
 		Book book = new Book();
 		book = bookDao.getBookDetail(bookId);
 		req.setAttribute("bookDetail", book);
+		
+		List<Book> bookList = bookDao.getTest();
+		for(Book bk : bookList) {
+			String bookName = bk.getBookName();
+			if(bookName != null && bookName.matches("[a-zA-Z]+") && bookName.length()>30) {
+				bk.setBookName(bk.getBookName().subSequence(0, 26) + "...");
+			}else if(bookName != null && bookName.length()>16){
+				bk.setBookName(bk.getBookName().subSequence(0, 14) + "...");
+			}
+		}
+		req.setAttribute("bookList", bookList);
+		
+		System.out.print(bookId);
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
 					getRequestDispatcher("/jsp/bookDetail.jsp");
 		dispatcher.forward(req, resp);
 		//super.doGet(req, resp);
 	}
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

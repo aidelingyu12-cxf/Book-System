@@ -16,11 +16,12 @@ public class BookDao {
         Connection conn = DBUtil.getConnection();
         String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
-        		+ "author,subtitle,picture,category from book";
+        		+ "author,subtitle,picture,category from book where book_id=?";
         PreparedStatement ps = null;
         Book book = new Book();
         try{
             ps = conn.prepareStatement(sql);
+            ps.setString(1, bookId);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
             	book.setBookId(rs.getString("book_id"));
@@ -50,6 +51,30 @@ public class BookDao {
         String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
         		+ "author,subtitle,picture,category from book limit 20";
+        PreparedStatement ps = null;
+        List<Book> bookList = new ArrayList<Book>();
+        try{
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            	Book book = new Book();
+            	book.setBookId(rs.getString("book_id"));
+            	book.setBookName(rs.getString("book_name"));
+            	book.setAuthor(rs.getString("author"));
+            	book.setPicture(rs.getString("picture"));
+            	bookList.add(book);
+            }
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return bookList;
+    }
+    
+    public List<Book> getTest(){
+        Connection conn = DBUtil.getConnection();
+        String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
+        		+ "version,page,price,publish_date,sale_date,"
+        		+ "author,subtitle,picture,category from book limit 12";
         PreparedStatement ps = null;
         List<Book> bookList = new ArrayList<Book>();
         try{

@@ -160,7 +160,7 @@ request.setAttribute("path", basePath);
 
       </div>
 
-      <!-- <div class="main-wrap">
+      <div class="main-wrap">
       <div class="otherDetail-wrap">
         <div class="other-title other-child">
           <span>ハリーポッター</span>
@@ -169,39 +169,22 @@ request.setAttribute("path", basePath);
 
       </div>
 
-     </div> -->
+     </div>
 
       <div class="main-wrap">
         <div class="otherDetail-wrap relatedBooks-wrap">
           <div class="other-title other-child">
-            <span>ハリーポッター</span>
-            <span class="inventory">在庫数: 100</span>
+            <span>おすすめ</span>
           </div>
 
           <div class="related-books">
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-            </div>
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-              <span>ハリーポッターrelated-book</span>
-            </div>
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-            </div>
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-            </div>
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-            </div>
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-            </div>
-            <div class="related-book">
-              <img src="../pic/bookList/book-list15.png">
-              <span>related-bookrelated-bookrelated-book</span>
-            </div>
+          	<c:forEach items="${requestScope.bookList}" var="book">
+          		<div class="related-book">
+              		<img src="${book.getPicture()}">
+              		<span>${book.getBookName()}</span>
+            	</div>
+          	</c:forEach>
+            
           </div>
 
         </div>
