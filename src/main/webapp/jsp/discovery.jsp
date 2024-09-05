@@ -14,8 +14,8 @@ request.setAttribute("path", basePath);
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>図書管理システム</title>
-  <link rel="stylesheet" type="text/css" href="css1/home.css" />
-  <script src="js1/home.js"></script>
+  <link rel="stylesheet" type="text/css" href="css1/discovery.css" />
+  <script src="js1/discovery.js"></script>
 </head>
 
 <body>
@@ -24,20 +24,20 @@ request.setAttribute("path", basePath);
       <header-navi>
         <div class="header-navi-titleUl">
           <a class="header-navi-title" href="/" title="図書管理システム">
-            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.jpg" alt="図書管理システム · BookSystem">
+            <img class="header-navi-pic" src="../pic/headerList/header-navi-pic.png" alt="図書管理システム · BookSystem">
           </a>
           <ul class="header-navi-ul">
-          	<li class="header-navi-ul-category">
+          	<li>
           		<img src="pic/headerList/category.png">
           		<a href="http://localhost:8080/Book-System/book">カテゴリー</a>
           	</li>
          	<li>
          		<img src="pic/headerList/header-list2.png">
-         		<a href="jsp/discovery.html">ディスカバリー</a>
+         		<a href="discovery.html">ディスカバリー</a>
          	</li>
          	<li>
          		<img src="pic/headerList/header-list3.png">
-         		<a href="jsp/ranking.html">ランキング</a>
+         		<a href="ranking.html">ランキング</a>
          	</li>
          	<li>
          		<img src="pic/headerList/header-list4.png">
@@ -57,80 +57,64 @@ request.setAttribute("path", basePath);
       </header-navi>
       <header-login>
         <div class="header-navi-register header-login-child" onclick="doOpenRegisterDialog()">
-          <img src="pic/register-icon.png">
+          <img src="../pic/register-icon.png">
           <a href="javascript:;">レジスター</a>
         </div>
         <div class="header-navi-login header-login-child" onclick="doOpenLoginDialog()">
-          <img src="pic/login-icon.png">
+          <img src="../pic/login-icon.png">
           <a href="javascript:;">ログイン</a>
         </div>
       </header-login>
     </header>
+    <middle>
+      <div class="middle-category">
+        <span>カテゴリー:</span>
+        <c:forEach items="${requestScope.categoryList}" var="category">
+        	<a href="">${category.getName()}</a>
+        </c:forEach>
+      </div>
+      <ul class="middle-nav">
+        <li onclick="doGetBooksByTag(this)">
+          <a href="javascript:;">新着順</a>
+        </li>
+        <li onclick="doGetBooksByTag(this)">
+          <a href="javascript:;">人気書籍</a>
+        </li>
+        <li onclick="doGetBooksByTag(this)">
+          <a href="javascript:;">おすすめ</a>
+        </li>
+      </ul>
+    </middle>
     <main>
-      <div class="booklist-wrap">
-        <div class="booklist-inner">
-        	<c:forEach items="${requestScope.bookList}" var="book">
-        		<c:set var="str" value="Hello" />
-        		<a href="http://localhost:8080/Book-System/bookDetail?bookId=${book.getBookId()}">
-        			<img src="${book.getPicture()}">
-        		</a>
-        	</c:forEach>
+      <div class="main-content">
+       	<div class="bookList">
+       		<c:forEach items="${requestScope.bookList}" var="bk">
+       			<div class="book">
+       				<a class="pic-a" href="http://localhost:8080/Book-System/bookDetail?bookId=${bk.getBookId()}">
+       					<img src="${bk.getPicture()}">
+       				</a>
+       				<a class="text-a" href="">
+       				${bk.getBookName()}
+       				</a>
+       			</div>
+       		</c:forEach>
         </div>
       </div>
-      <div class="main-split">
-      </div>
-      <div class="main-main">
-        <div class="main-left">
-          <div class="main-left-header">
-            カタログ
+      <div class="pagination">
+        <div class="pages">
+          <div>
+            <button class="pages-start pages-fixed"><</button>
           </div>
-          <c:forEach var="category" items="${requestScope.categoryList}">
-          	<a href="javascript:;" onclick="getBooksByCategory(${category.getId()})">
-          		<p>${category.getName()}</p>
-          	</a>
-          </c:forEach>
-        </div>
-        <div class="main-right">
-          <div class="right-main-header">
-            <h2>新着情報カレンダー 2024年08月</h2>
-          </div>
-          <div class="right-main-calender">
-            <table>
-              <thead>
-                <tr>
-                  <td>
-                    日
-                  </td>
-                  <td>
-                    月
-                  </td>
-                  <td>
-                    火
-                  </td>
-                  <td>
-                    水
-                  </td>
-                  <td>
-                    木
-                  </td>
-                  <td>
-                    金
-                  </td>
-                  <td>
-                    土
-                  </td>
-                </tr>
-              </thead>
-  
-              <tbody>
-              </tbody>
-            </table>
+          <ul>
+            <li class="pages-fixed">1</li>
+            <li class="pages-fixed">2</li>
+          </ul>
+          <div>
+            <button class="pages-start pages-fixed">></button>
           </div>
         </div>
       </div>
     </main>
-    <bottom>
-    </bottom>
     <footer class="footer">
       <p>この検索サイトは日本語のみ対応しています。</p>
       <p>©2024 テスト出版社 Test Publishing Organization</p>

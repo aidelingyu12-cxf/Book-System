@@ -24,13 +24,22 @@ import com.exapmle.dao.CategoryDao;
 
 public class BookServlet extends BaseServlet {
 	
+	List<Category> categoryList = null;
+	
+	private List<Category> getCatalog() {
+		if(categoryList == null) {
+			CategoryDao categoryDao = new CategoryDao();
+			categoryList = categoryDao.getCategorys();
+		}
+		return categoryList;
+	}
+	
 	protected void book(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
 		BookDao bookDao = new BookDao();
-		CategoryDao categoryDao = new CategoryDao();
 		List<Book> bookList = bookDao.getHeaderBooks();
-		List<Category> categoryList = categoryDao.getCategorys();
+		List<Category> categoryList = getCatalog();
 		req.setAttribute("bookList", bookList);
 		req.setAttribute("categoryList", categoryList);
 		ServletContext servletContext = getServletContext();
@@ -60,7 +69,6 @@ public class BookServlet extends BaseServlet {
 		}
 		req.setAttribute("bookList", bookList);
 		
-		System.out.print(bookId);
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
 					getRequestDispatcher("/jsp/bookDetail.jsp");
@@ -68,6 +76,23 @@ public class BookServlet extends BaseServlet {
 		//super.doGet(req, resp);
 	}
 	
+	
+	protected void discovery(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("utf-8");
+		String categoryId = req.getParameter("categoryId");
+		String tag = req.getParameter("tag");
+		List<Category> categoryList = getCatalog();
+		BookDao bookDao = new BookDao();
+		List<Book> bookList = bookDao.getBooksByTag(categoryId,tag);
+		req.setAttribute("bookList", bookList);
+		req.setAttribute("categoryList", categoryList);
+		ServletContext servletContext = getServletContext();
+		RequestDispatcher dispatcher = servletContext.
+					getRequestDispatcher("/jsp/discovery.jsp");
+		dispatcher.forward(req, resp);
+		//super.doGet(req, resp);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

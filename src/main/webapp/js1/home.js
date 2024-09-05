@@ -25,11 +25,17 @@ function loadData() {
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
-
+	
+	getBooksByCategory = function(categoryId){
+		console.log(categoryId);
+		window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
+		+ categoryId + "&tag=0";
+	}
 
   }
 
 }
+
 
 
 function doCarousel() {
@@ -154,3 +160,5 @@ function doOpenLoginDialog(){
 function doCheckSearchKeyWords(){
   console.log(123);
 }
+
+

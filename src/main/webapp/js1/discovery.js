@@ -12,9 +12,9 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
 
-    getCatalog();
+    //getCatalog();
 
-    getBookList();
+    //getBookList();
 
     getNewArrivalClicked();
 
