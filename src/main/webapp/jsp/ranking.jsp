@@ -14,8 +14,8 @@ request.setAttribute("path", basePath);
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>図書管理システム</title>
-  <link rel="stylesheet" type="text/css" href="css1/discovery.css" />
-  <script src="js1/discovery.js"></script>
+  <link rel="stylesheet" type="text/css" href="css1/ranking.css" />
+  <script src="js1/ranking.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@ request.setAttribute("path", basePath);
       <header-navi>
         <div class="header-navi-titleUl">
           <a class="header-navi-title" href="/" title="図書管理システム">
-            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.jpg" alt="図書管理システム · BookSystem">
+            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.png" alt="図書管理システム · BookSystem">
           </a>
           <ul class="header-navi-ul">
           	<li class="header-navi-ul-category">
@@ -57,62 +57,32 @@ request.setAttribute("path", basePath);
       </header-navi>
       <header-login>
         <div class="header-navi-register header-login-child" onclick="doOpenRegisterDialog()">
-          <img src="pic/register-icon.png">
+          <img src="../pic/register-icon.png">
           <a href="javascript:;">レジスター</a>
         </div>
         <div class="header-navi-login header-login-child" onclick="doOpenLoginDialog()">
-          <img src="pic/login-icon.png">
+          <img src="../pic/login-icon.png">
           <a href="javascript:;">ログイン</a>
         </div>
       </header-login>
     </header>
-    <middle>
-      <div class="middle-category">
-        <span>カテゴリー:</span>
-        <c:forEach items="${requestScope.categoryList}" var="category">
-        	<a href="">${category.getName()}</a>
-        </c:forEach>
-      </div>
-      <ul class="middle-nav">
-        <li onclick="doGetBooksByTag(this)">
-          <a href="javascript:;">新着順</a>
-        </li>
-        <li onclick="doGetBooksByTag(this)">
-          <a href="javascript:;">人気書籍</a>
-        </li>
-        <li onclick="doGetBooksByTag(this)">
-          <a href="javascript:;">おすすめ</a>
-        </li>
-      </ul>
-    </middle>
+
     <main>
       <div class="main-content">
-       	<div class="bookList">
-       		<c:forEach items="${requestScope.bookList}" var="bk">
-       			<div class="book">
-       				<a class="pic-a" href="http://localhost:8080/Book-System/bookDetail?bookId=${bk.getBookId()}">
-       					<img src="${bk.getPicture()}">
-       				</a>
-       				<a class="text-a" href="">
-       				${bk.getBookName()}
-       				</a>
-       			</div>
-       		</c:forEach>
-        </div>
-      </div>
-      <div class="pagination">
-        <div class="pages">
-          <div>
-            <button class="pages-start pages-fixed"><</button>
-          </div>
-          <ul>
-            <li class="pages-fixed">1</li>
-            <li class="pages-fixed">2</li>
-          </ul>
-          <div>
-            <button class="pages-start pages-fixed">></button>
+        <div class="ranking-wrap">
+          <div class="ranking">
+            <div class="ranking-header">
+              評価ランキング
+            </div>
+            <div class="ranking-content">
+              <ul class="ranking-detail">
+              </ul>
+            </div>
           </div>
         </div>
+
+
+
       </div>
     </main>
     <footer class="footer">

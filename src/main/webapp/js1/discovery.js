@@ -18,11 +18,23 @@ function loadData() {
 
     getNewArrivalClicked();
 
-    getHeaderList();
+    //getHeaderList();
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
     
+	getBooksByCategory = function(categoryId){
+		window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
+		+ categoryId + "&tag=0";
+	}
+	
+	getHome = function(){
+		window.location.href = "http://localhost:8080/Book-System/book"
+	}
+	
+	getRanking = function(){
+		window.location.href = "http://localhost:8080/Book-System/ranking"
+	}
 
   }
 

@@ -222,7 +222,7 @@ main {
         border-radius: 0 6px 6px 0;
         display: flex;
         align-items: center;
-
+        color: black;
         p {
           margin-left: 24px;
         }

@@ -12,14 +12,25 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
     //
-    getHeaderList();
+    //getHeaderList();
     //左側本のカタログを取得する
-    getRanking();
+    //getRanking();
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
 
+	getBooksByCategory = function(categoryId){
+		window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
+		+ categoryId + "&tag=0";
+	}
 
+	getHome = function(){
+		window.location.href = "http://localhost:8080/Book-System/book"
+	}
+
+	getRanking = function(){
+		window.location.href = "http://localhost:8080/Book-System/ranking"
+	}
   }
 
 }

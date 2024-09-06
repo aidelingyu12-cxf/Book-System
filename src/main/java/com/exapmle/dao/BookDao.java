@@ -72,22 +72,26 @@ public class BookDao {
     
     public List<Book> getBooksByTag(String categoryId,String tag){
     	
-    	String sql = null;
+    	String sql = "select book_name,book_id,picture,sale_date from book";
     	Connection conn = DBUtil.getConnection();
-    	if("1".equals(tag)) {
-    		sql = "select book_name,book_id,picture,sale_date from book limit 0,50"
-        			+ "where category=? order by sale_date desc";
-    	}else {
-    		sql = "select book_name,book_id,picture from book where category=?"
-        			+ "limit 0,50";
+    	String suffix = " limit 0,50";
+    	String middleSql = "";
+    	if(!"0".equals(categoryId)) {
+    		middleSql = " where category=?";
+    	}else if("1".equals(tag)) {
+    		middleSql += " order by sale_date desc";
     	}
-    	
+    	sql = sql + middleSql + suffix;
     	PreparedStatement ps = null;
     	List<Book> bookList = new ArrayList<Book>();
     	try {
     		ps = conn.prepareStatement(sql);
-    		ps.setString(1, categoryId);
+    		if(!"0".equals(categoryId)) {
+    			ps.setString(1, categoryId);
+    		}
+    		
     		ResultSet rs = ps.executeQuery();
+    		
     		while(rs.next()) {
     			Book book = new Book();
     			book.setBookId(rs.getString("book_id"));

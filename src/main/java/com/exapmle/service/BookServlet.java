@@ -93,6 +93,16 @@ public class BookServlet extends BaseServlet {
 		dispatcher.forward(req, resp);
 		//super.doGet(req, resp);
 	}
+	
+	protected void ranking(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("utf-8");
+		ServletContext servletContext = getServletContext();
+		RequestDispatcher dispatcher = servletContext.
+					getRequestDispatcher("/jsp/ranking.jsp");
+		dispatcher.forward(req, resp);
+		//super.doGet(req, resp);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

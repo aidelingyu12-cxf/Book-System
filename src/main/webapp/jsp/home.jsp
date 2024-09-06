@@ -29,15 +29,15 @@ request.setAttribute("path", basePath);
           <ul class="header-navi-ul">
           	<li class="header-navi-ul-category">
           		<img src="pic/headerList/category.png">
-          		<a href="http://localhost:8080/Book-System/book">カテゴリー</a>
+          		<a href="javascript:;" onclick="getHome()">カテゴリー</a>
           	</li>
          	<li>
          		<img src="pic/headerList/header-list2.png">
-         		<a href="jsp/discovery.html">ディスカバリー</a>
+         		<a href="javascript:;" onclick="getBooksByCategory(0)">ディスカバリー</a>
          	</li>
          	<li>
          		<img src="pic/headerList/header-list3.png">
-         		<a href="jsp/ranking.html">ランキング</a>
+         		<a href="javascript:;" onclick="getRanking()">ランキング</a>
          	</li>
          	<li>
          		<img src="pic/headerList/header-list4.png">
@@ -70,8 +70,7 @@ request.setAttribute("path", basePath);
       <div class="booklist-wrap">
         <div class="booklist-inner">
         	<c:forEach items="${requestScope.bookList}" var="book">
-        		<c:set var="str" value="Hello" />
-        		<a href="http://localhost:8080/Book-System/bookDetail?bookId=${book.getBookId()}">
+        		<a href="javascript:;" onclick="getBookDetail(${book.getBookId()})">
         			<img src="${book.getPicture()}">
         		</a>
         	</c:forEach>

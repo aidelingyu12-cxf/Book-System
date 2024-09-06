@@ -195,17 +195,23 @@ container {
         margin: 0 0 10px 48px;
         width: 142px;
         height: 238px;
-        img {
-          width: 142px;
-          height: 182px;
-        }
-        span{
-          width: 142px;
-          height: 42px;
+        a{
           display: inline-block;
-          text-align: center;
-          margin-top: 10px;
+          width: 142px;
+          height: 238px;
+          img {
+            width: 142px;
+            height: 182px;
+          }
+          span{
+            width: 142px;
+            height: 42px;
+            display: inline-block;
+            text-align: center;
+            margin-top: 10px;
+          }
         }
+        
       }
 
     }
