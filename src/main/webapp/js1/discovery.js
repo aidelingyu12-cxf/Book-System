@@ -12,13 +12,9 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
 
-    //getCatalog();
-
-    //getBookList();
 
     getNewArrivalClicked();
 
-    //getHeaderList();
 
     var loadingMask = document.getElementById('loadingDiv');
     loadingMask.parentNode.removeChild(loadingMask);
@@ -52,91 +48,6 @@ function getNewArrivalClicked(){
   console.log(li0);
 }
 
-function getHeaderList() {
-  var xhttp = new XMLHttpRequest();
-  var xhttpResp = null;
-  var ul = document.getElementsByClassName("header-navi-ul")[0];
-  xhttp.open("GET", "http://localhost:3000/headerDataList", false);
-  xhttp.send();
-  if (xhttp.status == 200 && xhttp.readyState == 4) {
-    xhttpResp = JSON.parse(xhttp.response);
-    for (var i = 0; i < xhttpResp.length; i++) {
-      li = document.createElement("li");
-      a = document.createElement("a");
-      img = document.createElement("img");
-      img.setAttribute("src", xhttpResp[i]["pic"]);
-      a.setAttribute("href", "");
-      a.innerText = xhttpResp[i]["title"];
-      li.appendChild(img);
-      li.appendChild(a);
-      ul.appendChild(li);
-    }
-    var xhttpResp = JSON.parse(xhttp.responseText);
-
-  }
-
-}
-
-function getBookList() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:3000/bookDataList", false);
-  xhttp.send();
-  if( xhttp.status == 200 && xhttp.readyState == 4){
-    xhttpResp = JSON.parse(xhttp.responseText);
-    var bookList = document.getElementsByClassName("bookList")[0];
-    for(var i=0; i< xhttpResp.length; i++){
-      //
-      var book = document.createElement("div");
-      book.classList.add("book");
-
-      var a1 = document.createElement("a");
-      a1.classList.add("pic-a");
-      a1.setAttribute("href", xhttpResp[i]["url"]);
-      //書籍写真
-      var img = document.createElement("img");
-      img.setAttribute("src", xhttpResp[i]["pic"]);
-      //link
-      var a2 = document.createElement("a");
-      a2.classList.add("text-a");
-      a2.setAttribute("href", xhttpResp[i]["url"]);
-      a2.innerText = xhttpResp[i]["title"];
-
-      a1.appendChild(img);
-      book.appendChild(a1);
-      book.appendChild(a2);
-      bookList.appendChild(book);
-
-      
-    }
-
-  }
-}
-
-
-
-function getCatalog() {
-  var xhttp = new XMLHttpRequest();
-  var xhttpResp = null;
-  var data = 0;
-  xhttp.open("GET", "http://localhost:3000/catalogList", false);
-  xhttp.send();
-  if (xhttp.status == 200 && xhttp.readyState == 4) {
-    xhttpResp = JSON.parse(xhttp.responseText);
-    catalist = document.getElementsByClassName("middle-category")[0];
-    if(xhttpResp.length > 15){
-      data = 15
-    }else{
-      data = xhttpResp;
-    }
-    for (var i = 0; i < data; i++) {
-      cata = document.createElement("a");
-      cata.innerText = xhttpResp[i]["cata"];
-      cata.setAttribute("href", xhttpResp[i]["url"]);
-      catalist.appendChild(cata);
-    }
-
-  }
-}
 
 function doOpenRegisterDialog(){
   console.log("ss");

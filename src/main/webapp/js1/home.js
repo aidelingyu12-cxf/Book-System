@@ -12,13 +12,9 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
     //
-    //getHeaderList();
-    //左側本のカタログを取得する
-    //getCatalog();
     //カレンダーを設定する
     getCalenda();
     //
-    //getBookList();
 
     //
     doCarousel();

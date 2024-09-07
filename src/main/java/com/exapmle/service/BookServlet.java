@@ -26,6 +26,10 @@ public class BookServlet extends BaseServlet {
 	
 	List<Category> categoryList = null;
 	
+	List<Book> bookListWithPagination = null;
+	
+	List<Book> bookList = null;
+	
 	private List<Category> getCatalog() {
 		if(categoryList == null) {
 			CategoryDao categoryDao = new CategoryDao();
