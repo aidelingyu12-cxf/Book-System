@@ -30,12 +30,22 @@ public class BookServlet extends BaseServlet {
 	
 	List<Book> bookList = null;
 	
+	Integer TotalBooks = 0;
+	
 	private List<Category> getCatalog() {
 		if(categoryList == null) {
 			CategoryDao categoryDao = new CategoryDao();
 			categoryList = categoryDao.getCategorys();
 		}
 		return categoryList;
+	}
+	
+	private Integer getTotalBooks() {
+		if(TotalBooks == 0) {
+			BookDao bookDao = new BookDao();
+			TotalBooks = bookDao.getTotalBooks();
+		}
+		return TotalBooks;
 	}
 	
 	protected void book(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -86,9 +96,18 @@ public class BookServlet extends BaseServlet {
 		req.setCharacterEncoding("utf-8");
 		String categoryId = req.getParameter("categoryId");
 		String tag = req.getParameter("tag");
+		String curPage = req.getParameter("curPage");
+		String pageSize = req.getParameter("pageSize");
 		List<Category> categoryList = getCatalog();
+		Integer totalBooks = getTotalBooks();
 		BookDao bookDao = new BookDao();
-		List<Book> bookList = bookDao.getBooksByTag(categoryId,tag);
+		//List<Book> bookList = bookDao.getBooksByTag(categoryId,tag);
+		List<Book> bookList = bookDao.getBooksByCategoryAndPagination(
+				categoryId,
+				tag,
+				String.valueOf((Integer.parseInt(curPage)-1)*Integer.parseInt(pageSize)),
+				pageSize);
+		req.setAttribute("totalBooks", totalBooks);
 		req.setAttribute("bookList", bookList);
 		req.setAttribute("categoryList", categoryList);
 		ServletContext servletContext = getServletContext();

@@ -63,8 +63,7 @@ request.setAttribute("path", basePath);
             <button class="pages-start pages-fixed"><</button>
           </div>
           <ul>
-            <li class="pages-fixed">1</li>
-            <li class="pages-fixed">2</li>
+             <li class="pages-fixed">1</li>  	
           </ul>
           <div>
             <button class="pages-start pages-fixed">></button>
