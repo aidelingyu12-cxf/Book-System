@@ -10,8 +10,16 @@ import java.util.List;
 import com.exapmle.bean.Category;
 import com.exapmle.util.DBUtil;
 
+/**
+ * @aidelingyu12-cxf
+ * @カテゴリー関連
+ * */
 public class CategoryDao {
 
+	/**
+	 * @カテゴリー情報抽出
+	 * @戻り値　List<Category>　カテゴリーリスト
+	 * */
 	public List<Category> getCategorys(){
 		
 		List<Category> categoryList = new ArrayList<Category>();

@@ -1,44 +1,62 @@
 package com.exapmle.bean;
 
+/**
+ * @ユーザー情報
+ * */
 public class User {
-    //ユーザーId
+	
     private String userId;
-    //ユーザー名前
     private String userName;
-    //ユーザータイプ
     private Integer userType;
-    //パスワード
     private String userPass;
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Integer getUserType() {
-        return userType;
-    }
-
-    public void setUserType(Integer userType) {
-        this.userType = userType;
-    }
-
-    public String getUserPass() {
-        return userPass;
-    }
-
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
-    }
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	/**
+	 * @return the userType
+	 */
+	public Integer getUserType() {
+		return userType;
+	}
+	/**
+	 * @param userType the userType to set
+	 */
+	public void setUserType(Integer userType) {
+		this.userType = userType;
+	}
+	/**
+	 * @return the userPass
+	 */
+	public String getUserPass() {
+		return userPass;
+	}
+	/**
+	 * @param userPass the userPass to set
+	 */
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
+	}
+    
+    
 }

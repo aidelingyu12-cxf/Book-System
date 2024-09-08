@@ -7,9 +7,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @aidelingyu12-cxf
+ * @ユーザー情報関連
+ * */
 public class UserDao {
 
+	/**
+	 * @ユーザー情報抽出
+	 * @param username ユーザー名
+	 * @param password　パスワード
+	 * @戻り値　User　ユーザー情報
+	 * */
     public User getUserInfo(String username, String password){
+    	
         Connection conn = DBUtil.getConnection();
         String sql = "select user_id,user_name,user_type from user where " +
                 "user_name=? and user_pass=?";

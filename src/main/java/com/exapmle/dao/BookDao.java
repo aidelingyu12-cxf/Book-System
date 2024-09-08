@@ -10,8 +10,17 @@ import java.util.List;
 
 import com.exapmle.util.DBUtil;
 
+/**
+ * @aidelingyu12-cxf
+ * @書籍情報関連
+ * */
 public class BookDao {
 
+	/**
+	 * @IDで書籍情報を抽出する
+	 * @param bookId 書籍Id
+	 * @戻り値　Book　書籍情報
+	 * */
     public Book getBookDetail(String bookId){
         Connection conn = DBUtil.getConnection();
         String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
@@ -46,7 +55,12 @@ public class BookDao {
         return book;
     }
     
+	/**
+	 * @ホームペーのジカルーセル書籍リスト
+	 * @戻り値　List<Book>　書籍リスト
+	 * */
     public List<Book> getHeaderBooks(){
+    	
         Connection conn = DBUtil.getConnection();
         String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
@@ -70,7 +84,12 @@ public class BookDao {
         return bookList;
     }
     
+	/**
+	 * @書籍総数抽出
+	 * @戻り値　count　書籍総数
+	 * */
     public Integer getTotalBooks(){
+    	
         Connection conn = DBUtil.getConnection();
         String sql = "select count(book_id) from book";
         Integer count = 0;
@@ -87,12 +106,22 @@ public class BookDao {
         return count;
     }
     
+	/**
+	 * @ページネーションから書籍情報を抽出する
+	 * @param categoryId カテゴリーId
+	 * @param tag 抽出条件
+	 * @param curPage 入力ページ数
+	 * @param pageSize ページサイズ
+	 * @戻り値　List<Book>　書籍情報リスト
+	 * */
     public List<Book> getBooksByCategoryAndPagination(String categoryId,String tag,
 		String curPage,String pageSize){
     	
     	String sql = "select book_name,book_id,picture,sale_date from book";
     	Connection conn = DBUtil.getConnection();
+    	//抽出書籍数
     	String suffix = " limit " + curPage + "," + pageSize;
+    	//抽出条件/ソート順
     	String middleSql = "";
     	if(!"0".equals(categoryId)) {
     		middleSql = " where category=?";
@@ -123,42 +152,47 @@ public class BookDao {
     	return bookList;
     }
     
-    public List<Book> getBooksByTag(String categoryId,String tag){
-    	
-    	String sql = "select book_name,book_id,picture,sale_date from book";
-    	Connection conn = DBUtil.getConnection();
-    	String suffix = " limit 0,50";
-    	String middleSql = "";
-    	if(!"0".equals(categoryId)) {
-    		middleSql = " where category=?";
-    	}else if("1".equals(tag)) {
-    		middleSql += " order by sale_date desc";
-    	}
-    	sql = sql + middleSql + suffix;
-    	PreparedStatement ps = null;
-    	List<Book> bookList = new ArrayList<Book>();
-    	try {
-    		ps = conn.prepareStatement(sql);
-    		if(!"0".equals(categoryId)) {
-    			ps.setString(1, categoryId);
-    		}
-    		
-    		ResultSet rs = ps.executeQuery();
-    		
-    		while(rs.next()) {
-    			Book book = new Book();
-    			book.setBookId(rs.getString("book_id"));
-    			book.setBookName(rs.getString("book_name"));
-    			book.setPicture(rs.getString("picture"));
-    			bookList.add(book);
-    		}
-    	}catch(SQLException exception){
-            exception.printStackTrace();
-        }
-    	return bookList;
-    }
+//	/**
+//	 * @書籍情報抽出
+//	 * @param bookId 書籍Id
+//	 * @戻り値　Book　書籍情報
+//	 * */
+//    public List<Book> getBooksByTag(String categoryId,String tag){
+//    	
+//    	String sql = "select book_name,book_id,picture,sale_date from book";
+//    	Connection conn = DBUtil.getConnection();
+//    	String suffix = " limit 0,50";
+//    	String middleSql = "";
+//    	if(!"0".equals(categoryId)) {
+//    		middleSql = " where category=?";
+//    	}else if("1".equals(tag)) {
+//    		middleSql += " order by sale_date desc";
+//    	}
+//    	sql = sql + middleSql + suffix;
+//    	PreparedStatement ps = null;
+//    	List<Book> bookList = new ArrayList<Book>();
+//    	try {
+//    		ps = conn.prepareStatement(sql);
+//    		if(!"0".equals(categoryId)) {
+//    			ps.setString(1, categoryId);
+//    		}
+//    		
+//    		ResultSet rs = ps.executeQuery();
+//    		
+//    		while(rs.next()) {
+//    			Book book = new Book();
+//    			book.setBookId(rs.getString("book_id"));
+//    			book.setBookName(rs.getString("book_name"));
+//    			book.setPicture(rs.getString("picture"));
+//    			bookList.add(book);
+//    		}
+//    	}catch(SQLException exception){
+//            exception.printStackTrace();
+//        }
+//    	return bookList;
+//    }
     
-    public List<Book> getTest(){
+    public List<Book> getRecommendBooks(){
         Connection conn = DBUtil.getConnection();
         String sql = "select book_name,book_id,comment,ASIN,ISBN,press,"
         		+ "version,page,price,publish_date,sale_date,"
