@@ -18,6 +18,7 @@ request.setAttribute("path", basePath);
   <link rel="stylesheet" type="text/css" href="css1/header-common.css" />
   <link rel="stylesheet" type="text/css" href="css1/footer-common.css" />
   <script src="js1/discovery.js"></script>
+  <script src="js1/common.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@ request.setAttribute("path", basePath);
       <div class="middle-category">
         <span>カテゴリー:</span>
         <c:forEach items="${requestScope.categoryList}" var="category">
-        	<a href="">${category.getName()}</a>
+        	<a href="javascript:;" onclick="getBooksByCategory(${category.getId()})">${category.getName()}</a>
         </c:forEach>
       </div>
       <ul class="middle-nav">

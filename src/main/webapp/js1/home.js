@@ -40,6 +40,11 @@ function loadData() {
 		+ bookId;
 	}
 	
+	getBooks = function(bookId){
+		window.location.href = "http://localhost:8080/Book-System/bookDetail?bookId="
+		+ bookId;
+	}
+	
 	}
 }
 

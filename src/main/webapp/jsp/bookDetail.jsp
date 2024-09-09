@@ -18,6 +18,7 @@ request.setAttribute("path", basePath);
   <link rel="stylesheet" type="text/css" href="css1/header-common.css" />
   <link rel="stylesheet" type="text/css" href="css1/footer-common.css" />
   <script src="js1/bookDetail.js"></script>
+  <script src="js1/common.js"></script>
 </head>
 
 <body>

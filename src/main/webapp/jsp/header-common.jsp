@@ -3,7 +3,7 @@
 <header>
      <header-navi>
        <div class="header-navi-titleUl">
-         <a class="header-navi-title" href="/" title="図書管理システム">
+         <a class="header-navi-title" href="javascript:;" onclick="getHome()" title="図書管理システム">
            <img class="header-navi-pic" src="pic/headerList/header-navi-pic.jpg" alt="図書管理システム · BookSystem">
          </a>
          <ul class="header-navi-ul">
