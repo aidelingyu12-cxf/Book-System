@@ -1,5 +1,3 @@
-
-
 var _PageHeight = document.documentElement.clientHeight,
   _PageWidth = document.documentElement.clientWidth;
 var _LoadingTop = _PageHeight > 61 ? (_PageHeight - 61) / 2 : 0,
@@ -14,49 +12,24 @@ function loadData() {
     //
     //カレンダーを設定する
     getCalenda();
-    //
 
-    //
+    //カルーセル
     doCarousel();
-
-    var loadingMask = document.getElementById('loadingDiv');
-    loadingMask.parentNode.removeChild(loadingMask);
 	
-	getBooksByCategory = function(categoryId){
-		window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
-		+ categoryId + "&tag=0&curPage=1&pageSize=16";
-	}
-	
-	getHome = function(){
-		window.location.href = "http://localhost:8080/Book-System/book"
-	}
-	
-	getRanking = function(){
-		window.location.href = "http://localhost:8080/Book-System/ranking"
-	}
-	
-	getBookDetail = function(bookId){
-		window.location.href = "http://localhost:8080/Book-System/bookDetail?bookId="
-		+ bookId;
-	}
-	
-	getBooks = function(bookId){
-		window.location.href = "http://localhost:8080/Book-System/bookDetail?bookId="
-		+ bookId;
-	}
-	
+	var loadingMask = document.getElementById('loadingDiv');
+	loadingMask.parentNode.removeChild(loadingMask);
 	}
 }
 
-
-
+//カルーセル
 function doCarousel() {
+　 //書籍
   var bookWrap = document.querySelectorAll(".booklist-inner")[0];
   var booklist = document.querySelectorAll(".booklist-inner > a");
-  var mainLen = document.getElementsByTagName("main")[0].offsetWidth;
+  //書籍の横幅
   var bookWidth = booklist[0].offsetWidth;
+  //書籍リストの要素数
   var bookLenth = booklist.length;
-  var totalLen = bookWidth * bookLenth;
   var lft = 10;
   let timer;
   
@@ -72,10 +45,6 @@ function doCarousel() {
   function play() {
     timer = setInterval(() => {
       lft -= 1;
-      if (totalLen + bookWrap.offsetLeft - bookLenth <= mainLen) {
-        lft = 0;
-
-      }
       if (-lft >= bookWidth) {
         var tempNode = bookWrap.children[0].cloneNode(true);
         bookWrap.appendChild(tempNode);
@@ -86,7 +55,6 @@ function doCarousel() {
       bookWrap.style.left = lft + "px";
     }, 20);
   }
-
 }
 
 
