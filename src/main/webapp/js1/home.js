@@ -18,73 +18,95 @@ function loadData() {
 	
 	var loadingMask = document.getElementById('loadingDiv');
 	loadingMask.parentNode.removeChild(loadingMask);
+	
 	}
 }
 
-//カルーセル
-function doCarousel() {
-　 //書籍
-  var bookWrap = document.querySelectorAll(".booklist-inner")[0];
-  var booklist = document.querySelectorAll(".booklist-inner > a");
-  //書籍の横幅
-  var bookWidth = booklist[0].offsetWidth;
-  //書籍リストの要素数
-  var bookLenth = booklist.length;
-  var lft = 10;
-  let timer;
-  
-  play();
-  bookWrap.onmouseenter = function () {
-    clearInterval(timer);
-  }
-
-  bookWrap.onmouseleave = function () {
-    play();
-  }
-
-  function play() {
-    timer = setInterval(() => {
-      lft -= 1;
-      if (-lft >= bookWidth) {
-        var tempNode = bookWrap.children[0].cloneNode(true);
-        bookWrap.appendChild(tempNode);
-        bookWrap.removeChild(bookWrap.children[0]);
-        lft = 0;
-      }
-
-      bookWrap.style.left = lft + "px";
-    }, 20);
-  }
+//入力キーワードから書籍リストを抽出する
+function doCheckSearchKeyWords(){
+  //inputを選択する
+  var input = document.getElementsByClassName("header-navi-input")[0];
+  //入力書籍名
+  var bookName = input.value;
+  window.location.href = "http://localhost:8080/Book-System/getBooksByName?bookName=" + bookName;
 }
 
+//カルーセル
+function doCarousel(){
+	//書籍
+	var bookWrap = document.querySelectorAll(".booklist-inner")[0];
+	var booklist = document.querySelectorAll(".booklist-inner > a");
+	//第一本の書籍の横幅
+	var bookWidth = booklist[0].offsetWidth;
+	//書籍リストとスクリーン最左側の距離
+	var lft = 10;
+	//タイマー
+	let timer;
+
+	play();
+	//マウスが置く
+	bookWrap.onmouseenter = function () {
+	  clearInterval(timer);
+	}
+	//マウスが離れ
+	bookWrap.onmouseleave = function () {
+	  play();
+	}
+	//カルーセル実行する
+	function play() {
+	  timer = setInterval(() => {
+		//書籍リストを20ミリ秒毎に1単位左に移動させる
+	    lft -= 1;
+		//書籍リストは、左に移動した距離が書籍の横幅より大きい場合
+	    if (-lft >= bookWidth) {
+		  //左に移動した書籍をクローンし
+	      var tempNode = bookWrap.children[0].cloneNode(true);
+		  //書籍リストの最後に追加する
+	      bookWrap.appendChild(tempNode);
+		  //左に移動した書籍を書籍リストから削除する
+	      bookWrap.removeChild(bookWrap.children[0]);
+		  //書籍リストとスクリーン最左側の距離をリセットする
+	      lft = 0;
+	    }
+
+	    bookWrap.style.left = lft + "px";
+	  }, 20);
+	}
+}
 
 
 
 
 //カレンダー
 function getCalenda() {
+  //システム時間を取得
   var date = new Date();
+  //年
   var year = date.getFullYear();
+  //月
   var month = date.getMonth();
+  //前月
   var lastMonth = (month == -1) ? 11 : month - 1;
-  //今日の日付
+  //今日1日の日付
   var firstDay = new Date(year, month, 1);
   //今月の最後の日の日付
   var lastDay = new Date(year, month + 1, 0).getDate();
   //前月最後の日の日付
   var lastMonthLastDay = new Date(year, lastMonth + 1, 0).getDate();
   //前月最後の日の日付
-  var thisMonthLastDay = new Date(year, lastMonth, 0);
+  //var thisMonthLastDay = new Date(year, lastMonth, 0);
   var array = new Array();
   var dateMap = {
     "日曜日": 0, "月曜日": 1, "火曜日": 2, "水曜日": 3,
     "木曜日": 4, "金曜日": 5, "土曜日": 6
   }
-
+  
+  //
   const formatter = new Intl.DateTimeFormat('ja-JP', { weekday: 'long' });
   const dayOfWeek = formatter.format(firstDay);
-  var innerArray = new Array();
   var j = dateMap[dayOfWeek];
+  
+  var innerArray = new Array();
 
   //header
   for (var i = j - 1; i >= 0; i--) {
@@ -136,9 +158,26 @@ function doOpenRegisterDialog(){
 function doOpenLoginDialog(){
   
 }
-
-function doCheckSearchKeyWords(){
-  console.log(123);
+function getHome(){
+	window.location.href = "http://localhost:8080/Book-System/book"
 }
 
+function getRanking(){
+	window.location.href = "http://localhost:8080/Book-System/ranking"
+}
+
+function getBookDetail(bookId){
+	window.location.href = "http://localhost:8080/Book-System/bookDetail?bookId="
+	+ bookId;
+}
+
+function getBooksByCategory(categoryId){
+	window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
+	+ categoryId + "&tag=0&curPage=1&pageSize=16";
+}
+
+function getBooks(bookId){
+	window.location.href = "http://localhost:8080/Book-System/bookDetail?bookId="
+	+ bookId;
+}
 

@@ -152,6 +152,39 @@ public class BookDao {
     	return bookList;
     }
     
+	/**
+	 * @ページネーションから書籍情報を抽出する
+	 * @param categoryId カテゴリーId
+	 * @param tag 抽出条件
+	 * @param curPage 入力ページ数
+	 * @param pageSize ページサイズ
+	 * @戻り値　List<Book>　書籍情報リスト
+	 * */
+    public List<Book> getBooksByName(String bookName){
+    	
+    	String sql = "select book_name,book_id,picture,sale_date from book "
+    			+ "where book_name like '%" + bookName + "%' limit 1000";
+    	Connection conn = DBUtil.getConnection();
+    	PreparedStatement ps = null;
+    	List<Book> bookList = new ArrayList<Book>();
+    	try {
+    		ps = conn.prepareStatement(sql);
+    		ResultSet rs = ps.executeQuery();
+    		
+    		while(rs.next()) {
+    			Book book = new Book();
+    			book.setBookId(rs.getString("book_id"));
+    			book.setBookName(rs.getString("book_name"));
+    			book.setPicture(rs.getString("picture"));
+    			bookList.add(book);
+    		}
+    	}catch(SQLException exception){
+            exception.printStackTrace();
+        }
+    	return bookList;
+    }
+    
+    
 //	/**
 //	 * @書籍情報抽出
 //	 * @param bookId 書籍Id

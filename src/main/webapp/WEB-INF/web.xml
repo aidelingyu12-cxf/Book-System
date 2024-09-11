@@ -30,9 +30,13 @@
     <servlet-name>BookServlet</servlet-name>
     <url-pattern>/discovery</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>BookServlet</servlet-name>
     <url-pattern>/ranking</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BookServlet</servlet-name>
+    <url-pattern>/getBooksByName</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

@@ -25,6 +25,7 @@ header-navi {
       }
 
       .header-navi-btn {
+        cursor:pointer;
         margin-left: -18px;
         width: 72px;
         font-weight: bold;

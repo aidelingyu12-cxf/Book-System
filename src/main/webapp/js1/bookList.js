@@ -1,10 +1,5 @@
 
 
-function hidefooter(){
-  var pagination = document.getElementsByClassName(".pagination")[0];
-  pagination.style.display = "";
-}
-
 
 
 function getBookList() {
