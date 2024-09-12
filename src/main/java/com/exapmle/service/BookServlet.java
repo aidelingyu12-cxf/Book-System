@@ -139,6 +139,8 @@ public class BookServlet extends BaseServlet {
 		String tag = req.getParameter("tag");
 		String curPage = req.getParameter("curPage");
 		String pageSize = req.getParameter("pageSize");
+		//ページ数
+		Integer totalpages = 0;
 		//カテゴリーリストを抽出
 		List<Category> categoryList = getCatalog();
 		//書籍総数を取得
@@ -150,9 +152,16 @@ public class BookServlet extends BaseServlet {
 				tag,
 				String.valueOf((Integer.parseInt(curPage)-1)*Integer.parseInt(pageSize)),
 				pageSize);
-		//書籍総数、書籍リストとカテゴリーリストを次の画面へセットする
-		req.setAttribute("totalBooks", totalBooks);
+		//ページ数を設定する
+		if((totalBooks%Integer.parseInt(pageSize)) == 0) {
+			totalpages = totalBooks/Integer.parseInt(pageSize);
+		}else
+			totalpages = totalBooks/Integer.parseInt(pageSize) + 1;
+		//書籍総数、書籍リスト、カテゴリーとカテゴリーリストを次の画面へセットする
+		req.setAttribute("totalpages", totalpages);
 		req.setAttribute("bookList", bookList);
+		req.setAttribute("categoryId", categoryId);
+		req.setAttribute("tag", tag);
 		req.setAttribute("categoryList", categoryList);
 		//次の画面：デスカバリー画面（discovery.jsp）
 		ServletContext servletContext = getServletContext();

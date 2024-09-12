@@ -64,7 +64,16 @@ request.setAttribute("path", basePath);
             <button class="pages-start pages-fixed"><</button>
           </div>
           <ul>
-             <li class="pages-fixed">1</li>  	
+          <%
+          	int pg = (Integer)request.getAttribute("totalpages");
+          	for(int i=1; i<=pg; i++){
+          		request.setAttribute("page", i);
+          %>
+
+            <li class="pages-fixed" onclick="nextPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag})">${page}</li>  	
+          	
+          <% } %>
           </ul>
           <div>
             <button class="pages-start pages-fixed">></button>
