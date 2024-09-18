@@ -61,7 +61,8 @@ request.setAttribute("path", basePath);
       <div class="pagination">
         <div class="pages">
           <div>
-            <button class="pages-start pages-fixed"><</button>
+            <button class="pages-prev pages-fixed" onclick="jumpToPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag})"><</button>
           </div>
           <ul>
           <%
@@ -70,13 +71,14 @@ request.setAttribute("path", basePath);
           		request.setAttribute("page", i);
           %>
 
-            <li class="pages-fixed" onclick="nextPage(${page},
-            ${requestScope.categoryId}, ${requestScope.tag})">${page}</li>  	
+            <li class="pages-fixed" onclick="jumpToPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag},this)">${page}</li>  	
           	
           <% } %>
           </ul>
           <div>
-            <button class="pages-start pages-fixed">></button>
+            <button class="pages-next pages-fixed" onclick="jumpToPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag})">></button>
           </div>
         </div>
       </div>
