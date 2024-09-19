@@ -72,7 +72,7 @@ request.setAttribute("path", basePath);
           %>
 
             <li class="pages-fixed" onclick="jumpToPage(${page},
-            ${requestScope.categoryId}, ${requestScope.tag},this)">${page}</li>  	
+            ${requestScope.categoryId}, ${requestScope.tag})">${page}</li>  	
           	
           <% } %>
           </ul>
