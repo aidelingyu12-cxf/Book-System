@@ -36,10 +36,6 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BookServlet</servlet-name>
-    <url-pattern>/getBooksByName</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BookServlet</servlet-name>
     <url-pattern>/searchResult</url-pattern>
   </servlet-mapping>
   

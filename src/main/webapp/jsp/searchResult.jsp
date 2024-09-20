@@ -17,7 +17,7 @@ request.setAttribute("path", basePath);
   <link rel="stylesheet" type="text/css" href="css1/searchResult.css" />
   <link rel="stylesheet" type="text/css" href="css1/header-common.css" />
   <link rel="stylesheet" type="text/css" href="css1/footer-common.css" />
-  <script src="js1/searchResult.js"></script>
+  <script src="js1/common.js"></script>
   <script src="js1/searchResult.js"></script>
 </head>
 
@@ -25,20 +25,49 @@ request.setAttribute("path", basePath);
   <container>
     <%@ include file="header-common.jsp" %>
     <middle>
-      <ul class="middle-nav">
-        <li onclick="doGetBooksByTag(this)">
-          <a href="javascript:;">新着順</a>
-        </li>
-        <li onclick="doGetBooksByTag(this)">
-          <a href="javascript:;">人気書籍</a>
-        </li>
-        <li onclick="doGetBooksByTag(this)">
-          <a href="javascript:;">おすすめ</a>
-        </li>
-      </ul>
+      <span class="middle-nav">新着順</span>
     </middle>
     <main>
-    
+      <ul>
+        <c:forEach items="${requestScope.bookList}" var="books">
+	        <li>
+	          <div class="book-pic-wrap">
+	            <a class="book-img-link" href="">
+	              <img class="book-img" src="${books.getPicture()}">
+	            </a>
+	          </div>
+	          <div class="book-info">
+	            <a></a>
+	            <div></div>
+	            <div></div>
+	          </div>
+	        </li>
+        </c:forEach>
+      </ul>
+      <div class="pagination">
+        <div class="pages">
+          <div>
+            <button class="pages-prev pages-fixed" onclick="jumpToPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag})"><</button>
+          </div>
+          <ul>
+          <%
+          	int pg = (Integer)request.getAttribute("totalpages");
+          	for(int i=1; i<=pg; i++){
+          		request.setAttribute("page", i);
+          %>
+
+            <li class="pages-fixed" onclick="jumpToPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag})">${page}</li>  	
+          	
+          <% } %>
+          </ul>
+          <div>
+            <button class="pages-next pages-fixed" onclick="jumpToPage(${page},
+            ${requestScope.categoryId}, ${requestScope.tag})">></button>
+          </div>
+        </div>
+      </div>
     </main>
     <bottom>
     </bottom>

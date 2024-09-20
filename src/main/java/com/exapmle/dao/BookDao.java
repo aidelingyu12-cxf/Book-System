@@ -88,6 +88,29 @@ public class BookDao {
 	 * @書籍総数抽出
 	 * @戻り値　count　書籍総数
 	 * */
+    public Integer getTotalBooksByBookName(String BookName){
+    	
+        Connection conn = DBUtil.getConnection();
+        String sql = "select count(book_id) from book where bookName=?";
+        Integer count = 0;
+        PreparedStatement ps = null;
+        try{
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ps.setString(1, BookName);
+            while(rs.next()){
+            	count = rs.getInt(1);
+            }
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return count;
+    }
+    
+	/**
+	 * @書籍総数抽出
+	 * @戻り値　count　書籍総数
+	 * */
     public Integer getTotalBooks(){
     	
         Connection conn = DBUtil.getConnection();

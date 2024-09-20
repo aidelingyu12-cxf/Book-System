@@ -29,7 +29,7 @@ function doCheckSearchKeyWords(){
   var input = document.getElementsByClassName("header-navi-input")[0];
   //入力書籍名
   var bookName = input.value;
-  window.location.href = "http://localhost:8080/Book-System/getBooksByName?bookName=" + bookName;
+  window.location.href = "http://localhost:8080/Book-System/searchResult?bookName=" + bookName;
 }
 
 //ホームページ画面へ進む

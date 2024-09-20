@@ -191,13 +191,13 @@ public class BookServlet extends BaseServlet {
 	}
 	
 	/**
-	 * @デスカバリー画面：画面（discovery.jsp）
+	 * @デスカバリー画面：画面（searchResult.jsp）
 	 * @param bookName 書籍名
 	 * @リターン値　Integer 書籍総数
 	 * @リターン値　List<Book>　書籍リスト
 	 * @リターン値　List<Category> カテゴリーリスト
 	 * */
-	protected void getBooksByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void searchResult(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("utf-8");
 		//リクエストからパラメータを抽出する
@@ -213,36 +213,6 @@ public class BookServlet extends BaseServlet {
 		req.setAttribute("totalBooks", totalBooks);
 		req.setAttribute("bookList", bookList);
 		req.setAttribute("categoryList", categoryList);
-		//次の画面：デスカバリー画面（discovery.jsp）
-		ServletContext servletContext = getServletContext();
-		RequestDispatcher dispatcher = servletContext.
-					getRequestDispatcher("/jsp/discovery.jsp");
-		dispatcher.forward(req, resp);
-	}
-	
-	/**
-	 * @デスカバリー画面：画面（searchResult.jsp）
-	 * @param bookName 書籍名
-	 * @リターン値　Integer 書籍総数
-	 * @リターン値　List<Book>　書籍リスト
-	 * @リターン値　List<Category> カテゴリーリスト
-	 * */
-	protected void searchResult(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.setCharacterEncoding("utf-8");
-		//リクエストからパラメータを抽出する
-//		String bookName = req.getParameter("bookName");
-//		//カテゴリーリストを抽出
-//		List<Category> categoryList = getCatalog();
-//		//書籍総数を取得
-//		Integer totalBooks = getTotalBooks();
-//		BookDao bookDao = new BookDao();
-//		//書籍リスト
-//		List<Book> bookList = bookDao.getBooksByName(bookName);
-//		//書籍総数、書籍リストとカテゴリーリストを次の画面へセットする
-//		req.setAttribute("totalBooks", totalBooks);
-//		req.setAttribute("bookList", bookList);
-//		req.setAttribute("categoryList", categoryList);
 		//次の画面：デスカバリー画面（discovery.jsp）
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
