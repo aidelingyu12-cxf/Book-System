@@ -130,6 +130,29 @@ public class BookDao {
     }
     
 	/**
+	 * @書籍総数抽出
+	 * @戻り値　count　書籍総数
+	 * */
+    public Integer getTotalBooksByName(String bookName){
+    	
+        Connection conn = DBUtil.getConnection();
+        String sql = "select count(book_id) from book where book_name=?";
+        Integer count = 0;
+        PreparedStatement ps = null;
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(0, bookName);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            	count = rs.getInt(1);
+            }
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return count;
+    }
+    
+	/**
 	 * @ページネーションから書籍情報を抽出する
 	 * @param categoryId カテゴリーId
 	 * @param tag 抽出条件
@@ -140,25 +163,61 @@ public class BookDao {
     public List<Book> getBooksByCategoryAndPagination(String categoryId,String tag,
 		String curPage,String pageSize){
     	
-    	String sql = "select book_name,book_id,picture,sale_date from book";
+    	StringBuilder sql = new StringBuilder();
     	Connection conn = DBUtil.getConnection();
+    	sql.append("select book_name,book_id,picture,sale_date from book");
     	//抽出書籍数
-    	String suffix = " limit " + curPage + "," + pageSize;
     	//抽出条件/ソート順
-    	String middleSql = "";
     	if(!"0".equals(categoryId)) {
-    		middleSql = " where category=?";
+    		sql.append(" where category=?");
     	}else if("1".equals(tag)) {
-    		middleSql += " order by sale_date desc";
+    		sql.append(" order by sale_date desc");
     	}
-    	sql = sql + middleSql + suffix;
+    	sql.append(" limit ").append(curPage).append(",").append(pageSize);
     	PreparedStatement ps = null;
     	List<Book> bookList = new ArrayList<Book>();
     	try {
-    		ps = conn.prepareStatement(sql);
+    		ps = conn.prepareStatement(sql.toString());
     		if(!"0".equals(categoryId)) {
     			ps.setString(1, categoryId);
     		}
+    		
+    		ResultSet rs = ps.executeQuery();
+    		
+    		while(rs.next()) {
+    			Book book = new Book();
+    			book.setBookId(rs.getString("book_id"));
+    			book.setBookName(rs.getString("book_name"));
+    			book.setPicture(rs.getString("picture"));
+    			bookList.add(book);
+    		}
+    	}catch(SQLException exception){
+            exception.printStackTrace();
+        }
+    	return bookList;
+    }
+    
+	/**
+	 * @ページネーションから書籍情報を抽出する
+	 * @param bookName 書籍名
+	 * @param curPage 入力ページ数
+	 * @param pageSize ページサイズ
+	 * @戻り値　List<Book>　書籍情報リスト
+	 * */
+    public List<Book> getBooksByName(String bookName,
+		String curPage,String pageSize){
+    	
+    	StringBuilder sql = new StringBuilder();
+    	Connection conn = DBUtil.getConnection();
+    	sql.append("select book_name,book_id,picture,sale_date from book");
+    	//抽出書籍数
+    	//抽出条件/ソート順
+    	sql.append(" where book_name like ? limit ").append(curPage).append(",").append(pageSize);
+    	PreparedStatement ps = null;
+    	List<Book> bookList = new ArrayList<Book>();
+    	try {
+    		ps = conn.prepareStatement(sql.toString());
+    		ps.setString(1, "%" + bookName + "%");
     		
     		ResultSet rs = ps.executeQuery();
     		

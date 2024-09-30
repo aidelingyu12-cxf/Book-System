@@ -21,8 +21,7 @@ function doCheckSearchKeyWords(){
 }
 
 
-function jumpToPage(curPage, categoryId, tag, obj){
-	alert(obj.classList);
+function jumpToPage(curPage, categoryId, tag){
 	window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
 		+ categoryId + "&tag=0&curPage=" + curPage + "&pageSize=16";
 }

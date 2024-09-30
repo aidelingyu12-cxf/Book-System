@@ -48,7 +48,7 @@ request.setAttribute("path", basePath);
         <div class="pages">
           <div>
             <button class="pages-prev pages-fixed" onclick="jumpToPage(${page},
-            ${requestScope.categoryId}, ${requestScope.tag})"><</button>
+            ${requestScope.bookName})"><</button>
           </div>
           <ul>
           <%
@@ -58,13 +58,13 @@ request.setAttribute("path", basePath);
           %>
 
             <li class="pages-fixed" onclick="jumpToPage(${page},
-            ${requestScope.categoryId}, ${requestScope.tag})">${page}</li>  	
+            '${requestScope.bookName}')">${page}</li>  	
           	
           <% } %>
           </ul>
           <div>
             <button class="pages-next pages-fixed" onclick="jumpToPage(${page},
-            ${requestScope.categoryId}, ${requestScope.tag})">></button>
+            ${requestScope.bookName})">></button>
           </div>
         </div>
       </div>

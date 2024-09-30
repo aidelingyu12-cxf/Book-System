@@ -24,38 +24,6 @@ import com.exapmle.dao.CategoryDao;
  * */
 public class BookServlet extends BaseServlet {
 	
-	List<Category> categoryList = null;
-	
-	List<Book> bookListWithPagination = null;
-	
-	List<Book> bookList = null;
-	
-	Integer TotalBooks = 0;
-	
-	/**
-	 * @カテゴリー情報を抽出する
-	 * @戻り値　List<Category>　カテゴリーリスト
-	 * */
-	private List<Category> getCatalog() {
-		if(categoryList == null) {
-			CategoryDao categoryDao = new CategoryDao();
-			categoryList = categoryDao.getCategorys();
-		}
-		return categoryList;
-	}
-	
-	/**
-	 * @書籍総数
-	 * @戻り値　Integer　書籍総数
-	 * */
-	private Integer getTotalBooks() {
-		if(TotalBooks == 0) {
-			BookDao bookDao = new BookDao();
-			TotalBooks = bookDao.getTotalBooks();
-		}
-		return TotalBooks;
-	}
-	
 	/**
 	 * @リダイレクト画面：ホームページ画面（book.jsp）
 	 * @リターン値　List<Category>　カテゴリーリスト
@@ -69,7 +37,8 @@ public class BookServlet extends BaseServlet {
 		//書籍リスト
 		List<Book> bookList = bookDao.getHeaderBooks();
 		//カテゴリーリスト
-		List<Category> categoryList = getCatalog();
+		CategoryDao categoryDao = new CategoryDao();
+		List<Category> categoryList = categoryDao.getCategorys();
 		//カテゴリーリストと書籍リストを次の画面へセットする
 		req.setAttribute("bookList", bookList);
 		req.setAttribute("categoryList", categoryList);
@@ -142,10 +111,11 @@ public class BookServlet extends BaseServlet {
 		//ページ数
 		Integer totalpages = 0;
 		//カテゴリーリストを抽出
-		List<Category> categoryList = getCatalog();
+		CategoryDao categoryDao = new CategoryDao();
+		List<Category> categoryList = categoryDao.getCategorys();
 		//書籍総数を取得
-		Integer totalBooks = getTotalBooks();
 		BookDao bookDao = new BookDao();
+		Integer totalBooks = bookDao.getTotalBooks();
 		//書籍リスト
 		List<Book> bookList = bookDao.getBooksByCategoryAndPagination(
 				categoryId,
@@ -202,17 +172,33 @@ public class BookServlet extends BaseServlet {
 		req.setCharacterEncoding("utf-8");
 		//リクエストからパラメータを抽出する
 		String bookName = req.getParameter("bookName");
+		//リクエストからパラメータを抽出する
+		String pageSize = req.getParameter("pageSize");
+		String curPage = req.getParameter("curPage");
+		//ページ数
+		Integer totalpages = 0;
 		//カテゴリーリストを抽出
-		List<Category> categoryList = getCatalog();
+		CategoryDao categoryDao = new CategoryDao();
+		List<Category> categoryList = categoryDao.getCategorys();
 		//書籍総数を取得
-		Integer totalBooks = getTotalBooks();
 		BookDao bookDao = new BookDao();
+		Integer totalBooks = bookDao.getTotalBooks();
 		//書籍リスト
-		List<Book> bookList = bookDao.getBooksByName(bookName);
+		List<Book> bookList = bookDao.getBooksByName(
+				bookName,
+				String.valueOf((Integer.parseInt(curPage)-1)*Integer.parseInt(pageSize)),
+				pageSize);
+		//ページ数を設定する
+		if((totalBooks%Integer.parseInt(pageSize)) == 0) {
+			totalpages = totalBooks/Integer.parseInt(pageSize);
+		}else
+			totalpages = totalBooks/Integer.parseInt(pageSize) + 1;
 		//書籍総数、書籍リストとカテゴリーリストを次の画面へセットする
+		req.setAttribute("totalpages", totalpages);
 		req.setAttribute("totalBooks", totalBooks);
 		req.setAttribute("bookList", bookList);
 		req.setAttribute("categoryList", categoryList);
+		req.setAttribute("bookName", bookName);
 		//次の画面：デスカバリー画面（discovery.jsp）
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.

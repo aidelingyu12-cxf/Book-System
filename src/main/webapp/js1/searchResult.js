@@ -13,6 +13,10 @@ function likeBook() {
 
 }
 
+function jumpToPage(curPage, bookName){
+	window.location.href="http://localhost:8080/Book-System/searchResult?bookName=" 
+	+ bookName + "&curPage=" + curPage + "&pageSize=16";
+}
 
 
 function doOpenRegisterDialog() {
