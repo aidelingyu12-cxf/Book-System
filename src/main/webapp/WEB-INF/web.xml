@@ -18,6 +18,12 @@
     <servlet-name>BookServlet</servlet-name>
     <servlet-class>com.exapmle.service.BookServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>UserServlet</description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.exapmle.service.UserServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>BookServlet</servlet-name>
     <url-pattern>/book</url-pattern>

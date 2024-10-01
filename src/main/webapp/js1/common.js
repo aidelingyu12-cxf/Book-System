@@ -54,3 +54,7 @@ function getBooksByCategory(categoryId){
 	window.location.href="http://localhost:8080/Book-System/discovery?categoryId="
 	+ categoryId + "&tag=0&curPage=1&pageSize=16";
 }
+
+function doOpenLoginDialog(){
+	window.location.href="http://localhost:8080/Book-System/login";
+}

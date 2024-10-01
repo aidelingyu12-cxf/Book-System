@@ -181,3 +181,8 @@ function getBooks(bookId){
 	+ bookId;
 }
 
+function doOpenLoginDialog(){
+	alert("sss");
+	window.location.href="http://localhost:8080/Book-System/login";
+}
+
