@@ -32,12 +32,23 @@ container {
         list-style: none;
         margin-top: 20px;
         width: 650px;
-        height: 200px;
         border-bottom: 1px dashed #EFEFEF;
+        display: flex;
+        flex-direction: row;
         .book-pic-wrap {
           width: 120px;
           height: 164px;
-
+          margin-right: 20px;
+          
+        }
+        .book-info {
+          a{
+            font-size:18px;
+          }
+          .book-info-desc{
+            margin-top: 5px;
+          }
+          
         }
       }
     }

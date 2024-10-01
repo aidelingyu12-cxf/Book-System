@@ -209,7 +209,7 @@ public class BookDao {
     	
     	StringBuilder sql = new StringBuilder();
     	Connection conn = DBUtil.getConnection();
-    	sql.append("select book_name,book_id,picture,sale_date from book");
+    	sql.append("select book_name,book_id,picture,sale_date,comment from book");
     	//抽出書籍数
     	//抽出条件/ソート順
     	sql.append(" where book_name like ? limit ").append(curPage).append(",").append(pageSize);
@@ -226,6 +226,7 @@ public class BookDao {
     			book.setBookId(rs.getString("book_id"));
     			book.setBookName(rs.getString("book_name"));
     			book.setPicture(rs.getString("picture"));
+    			book.setComment(rs.getString("comment"));
     			bookList.add(book);
     		}
     	}catch(SQLException exception){

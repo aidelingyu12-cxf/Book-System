@@ -25,7 +25,7 @@ request.setAttribute("path", basePath);
   <container>
     <%@ include file="header-common.jsp" %>
     <middle>
-      <span class="middle-nav">新着順</span>
+      <span class="middle-nav">今回の検索時間は 0.006 秒， 74　関連結果.</span>
     </middle>
     <main>
       <ul>
@@ -37,9 +37,9 @@ request.setAttribute("path", basePath);
 	            </a>
 	          </div>
 	          <div class="book-info">
-	            <a></a>
+	            <a href="http://localhost:8080/Book-System/bookDetail?bookId=${bk.getBookId()}">${books.getBookName()}</a>
 	            <div></div>
-	            <div></div>
+	            <div class="book-info-desc">${books.getComment()}</div>
 	          </div>
 	        </li>
         </c:forEach>
