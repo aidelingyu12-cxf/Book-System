@@ -56,5 +56,5 @@ function getBooksByCategory(categoryId){
 }
 
 function doOpenLoginDialog(){
-	window.location.href="http://localhost:8080/Book-System/login";
+	window.location.href="http://localhost:8080/Book-System/toLogin";
 }

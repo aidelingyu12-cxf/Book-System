@@ -48,7 +48,8 @@ request.setAttribute("path", basePath);
         </div>
         <div class="main-right">
           <div class="right-main-header">
-            <h2>新着情報カレンダー 2024年08月</h2>
+            <h2>新着情報カレンダー</h2>
+            <h2 class="todayMonth"></h2>
           </div>
           <div class="right-main-calender">
             <table>

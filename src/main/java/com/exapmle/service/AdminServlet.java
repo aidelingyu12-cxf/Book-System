@@ -18,13 +18,16 @@ import java.io.IOException;
 import java.util.List;
 
 //@WebServlet("/login")
-public class AdminServlet extends HttpServlet {
+public class AdminServlet extends BaseServlet {
 
     UserDao adminDao = new UserDao();
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
+    
+	/**
+	 * @リダイレクト画面：書籍詳細画面（login.jsp）
+	 * */
+    public void toLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
 		//次の画面：ホームページ画面（login.jsp）
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
@@ -36,16 +39,6 @@ public class AdminServlet extends HttpServlet {
 	 * @リダイレクト画面：書籍詳細画面（login.jsp）
 	 * */
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		//次の画面：ホームページ画面（login.jsp）
-		ServletContext servletContext = getServletContext();
-		RequestDispatcher dispatcher = servletContext.
-					getRequestDispatcher("/jsp/login.jsp");
-		dispatcher.forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         //ユーザー名前
@@ -53,19 +46,30 @@ public class AdminServlet extends HttpServlet {
         //パスワード
         String password = req.getParameter("password").trim();
 
-        UserDao dao = new UserDao();
-        User user = new User();
-        user = dao.getUserInfo(username,password);
-        if("".equals(username) || username.length()>10 || user.getUserName()== null){
-            resp.sendRedirect("loginfailure.jsp");
-        }else if("".equals(password) || password.length()>10){
-            resp.sendRedirect("homepage.jsp");
-        }
-		//次の画面：ホームページ画面（login.jsp）
+//        UserDao dao = new UserDao();
+//        User user = new User();
+//        user = dao.getUserInfo(username,password);
+//        if("".equals(username) || username.length()>10 || user.getUserName()== null){
+//            resp.sendRedirect("loginfailure.jsp");
+//        }else if("".equals(password) || password.length()>10){
+//            resp.sendRedirect("homepage.jsp");
+//        }
+		//次の画面：ホームページ画面（book.jsp）
+		req.setCharacterEncoding("utf-8");
+		//書籍情報
+		BookDao bookDao = new BookDao();
+		//書籍リスト
+		List<Book> bookList = bookDao.getHeaderBooks();
+		//カテゴリーリスト
+		CategoryDao categoryDao = new CategoryDao();
+		List<Category> categoryList = categoryDao.getCategorys();
+		//カテゴリーリストと書籍リストを次の画面へセットする
+		req.setAttribute("bookList", bookList);
+		req.setAttribute("categoryList", categoryList);
+		//次の画面：ホームページ画面（book.jsp）
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher dispatcher = servletContext.
-					getRequestDispatcher("/jsp/login.jsp");
+					getRequestDispatcher("/jsp/home.jsp");
 		dispatcher.forward(req, resp);
-
     }
 }

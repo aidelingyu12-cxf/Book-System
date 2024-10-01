@@ -5,6 +5,7 @@
 String path = request.getContextPath();  
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
 request.setAttribute("path", basePath);  
+
 %>
 
 
@@ -30,8 +31,7 @@ request.setAttribute("path", basePath);
          </a>
          <ul class="header-navi-ul">
          	<li class="header-navi-ul-category">
-         		<img src="pic/headerList/category.png">
-         		<a href="javascript:;" onclick="getHome()">カテゴリー</a>
+         		<h2 href="javascript:;" onclick="getHome()">図書管理システム</h2>
          	</li>
 
          </ul>
@@ -48,10 +48,10 @@ request.setAttribute("path", basePath);
     <main>
     	<div class="main-title">ログイン</div>
     	<div class="main-form-wrap">
-    		<form class="main-form">
-    			<input type="text" name="username" value="ユーザネーム" >
-    			<input type="text" name="password" value="パスワード" >
-    			<input type="button" name="submit" value="確認" >
+    		<form class="main-form" action="${requestScope.path}login" method="post">
+    			<input class="main-form-child" type="text" name="username" placeholder="ユーザネーム" >
+    			<input class="main-form-child" type="text" name="password" placeholder="パスワード" >
+    			<button style="cursor: pointer;" class="main-form-child" type="submit">確認</button>
     		</form>
     	</div>
     </main>

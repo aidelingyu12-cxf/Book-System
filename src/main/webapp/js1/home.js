@@ -10,6 +10,8 @@ document.onreadystatechange = loadData;
 function loadData() {
   if (document.readyState == "complete") {
     //
+	getTodayMonth();
+	
     //カレンダーを設定する
     getCalenda();
 
@@ -22,6 +24,21 @@ function loadData() {
 	}
 }
 
+//
+function getTodayMonth(){
+	//  Date 
+	const currentDate = new Date();
+	// 年
+	const year = currentDate.getFullYear();
+	// 月
+	const month = currentDate.getMonth() + 1;
+	// 日
+	const date = currentDate.getDate();
+	
+	var today = document.getElementsByClassName("todayMonth")[0];
+	today.textContent = year + "年" + month + "月" + date + "日";
+
+}
 //入力キーワードから書籍リストを抽出する
 function doCheckSearchKeyWords(){
   //inputを選択する
@@ -182,7 +199,6 @@ function getBooks(bookId){
 }
 
 function doOpenLoginDialog(){
-	alert("sss");
-	window.location.href="http://localhost:8080/Book-System/login";
+	window.location.href="http://localhost:8080/Book-System/toLogin";
 }
 
