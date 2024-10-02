@@ -32,12 +32,12 @@ request.setAttribute("path", basePath);
         <c:forEach items="${requestScope.bookList}" var="books">
 	        <li>
 	          <div class="book-pic-wrap">
-	            <a class="book-img-link" href="">
+	            <a class="book-img-link" href="http://localhost:8080/Book-System/bookDetail?bookId=${books.getBookId()}">
 	              <img class="book-img" src="${books.getPicture()}">
 	            </a>
 	          </div>
 	          <div class="book-info">
-	            <a href="http://localhost:8080/Book-System/bookDetail?bookId=${bk.getBookId()}">${books.getBookName()}</a>
+	            <a href="http://localhost:8080/Book-System/bookDetail?bookId=${books.getBookId()}">${books.getBookName()}</a>
 	            <div></div>
 	            <div class="book-info-desc">${books.getComment()}</div>
 	          </div>

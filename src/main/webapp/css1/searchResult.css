@@ -46,7 +46,11 @@ container {
             font-size:18px;
           }
           .book-info-desc{
+            width: 506px;
             margin-top: 5px;
+            height: 114px;
+            overflow: hidden;
+            text-overflow: ellipse;
           }
           
         }

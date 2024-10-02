@@ -21,7 +21,7 @@
         	</li>
         	<li>
         		<img src="pic/headerList/header-list4.png">
-        		<a href="javascript:;">書籍管理システム</a>
+        		<a href="javascript:;" onclick="getRanking()">書籍管理システム</a>
         	</li>
          </ul>
        </div>
