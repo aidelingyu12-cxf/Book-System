@@ -84,7 +84,7 @@ request.setAttribute("path", basePath);
                 <span class="comments">${requestScope.bookDetail.getComment()}</span>
               </p>
               <div class="div-btn">
-                <button class="collect-btn saveAndLikebtn">保存</button>
+<!--                 <button class="collect-btn saveAndLikebtn">保存</button> -->
                 <button class="like-btn saveAndLikebtn">いいね！</button>
               </div>
             </div>

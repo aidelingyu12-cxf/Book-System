@@ -267,6 +267,45 @@ public class BookDao {
     	return bookList;
     }
     
+	/**
+	 * @ページネーションから書籍情報を抽出する
+	 * @param categoryId カテゴリーId
+	 * @param tag 抽出条件
+	 * @param curPage 入力ページ数
+	 * @param pageSize ページサイズ
+	 * @戻り値　List<Book>　書籍情報リスト
+	 * */
+    public List<Book> getBooksByDate(String finalDate,
+		String curPage,String pageSize){
+    	
+    	StringBuilder sql = new StringBuilder();
+    	Connection conn = DBUtil.getConnection();
+    	sql.append("select book_name,book_id,picture,sale_date,comment from book");
+    	//抽出書籍数
+    	//抽出条件/ソート順
+    	sql.append(" where sale_date =? ").append(curPage).append(",").append(pageSize);
+    	PreparedStatement ps = null;
+    	List<Book> bookList = new ArrayList<Book>();
+    	try {
+    		ps = conn.prepareStatement(sql.toString());
+    		ps.setString(1, finalDate);
+    		
+    		ResultSet rs = ps.executeQuery();
+    		
+    		while(rs.next()) {
+    			Book book = new Book();
+    			book.setBookId(rs.getString("book_id"));
+    			book.setBookName(rs.getString("book_name"));
+    			book.setPicture(rs.getString("picture"));
+    			book.setComment(rs.getString("comment"));
+    			bookList.add(book);
+    		}
+    	}catch(SQLException exception){
+            exception.printStackTrace();
+        }
+    	return bookList;
+    }
+    
     
 //	/**
 //	 * @書籍情報抽出

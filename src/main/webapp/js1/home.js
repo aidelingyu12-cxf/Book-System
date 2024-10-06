@@ -158,11 +158,9 @@ function getCalenda() {
     var newRow = document.createElement("tr");
     for (var j = 0; j < inner.length; j++) {
       var newCell = document.createElement("td");
-      var newA = document.createElement("a");
       newRow.appendChild(newCell);
-      newCell.appendChild(newA);
       tbd.appendChild(newRow);
-      newCell.innerHTML += "<a class='innerA' onclick=getBooksByDate()>" + inner[j] + "</a>";
+      newCell.innerHTML += "<a class='innerA' onclick=getBooksByDate(" + inner[j] + ")>" + inner[j] + "</a>";
 
     }
   }
@@ -200,5 +198,18 @@ function getBooks(bookId){
 
 function doOpenLoginDialog(){
 	window.location.href="http://localhost:8080/Book-System/toLogin";
+}
+
+function getBooksByDate(date){
+	//  Date 
+	const currentDate = new Date();
+	// 年
+	const year = currentDate.getFullYear();
+	// 月
+	const month = currentDate.getMonth() + 1;
+	//
+	var finalDate = year + "-" + month + "-" + date
+	window.location.href="http://localhost:8080/Book-System/getNewArrival?date=" + 
+	finalDate + "&tag=0&curPage=1&pageSize=16";
 }
 

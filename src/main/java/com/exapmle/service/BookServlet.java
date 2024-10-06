@@ -205,6 +205,51 @@ public class BookServlet extends BaseServlet {
 					getRequestDispatcher("/jsp/searchResult.jsp");
 		dispatcher.forward(req, resp);
 	}
+	
+	/**
+	 * @デスカバリー画面：画面（getNewArrival.jsp）
+	 * @param bookName 書籍名
+	 * @リターン値　Integer 書籍総数
+	 * @リターン値　List<Book>　書籍リスト
+	 * @リターン値　List<Category> カテゴリーリスト
+	 * */
+	protected void getNewArrival(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("utf-8");
+		//リクエストからパラメータを抽出する
+		String finalDate = req.getParameter("finalDate");
+		//リクエストからパラメータを抽出する
+		String pageSize = req.getParameter("pageSize");
+		String curPage = req.getParameter("curPage");
+		//ページ数
+		Integer totalpages = 0;
+		//カテゴリーリストを抽出
+		CategoryDao categoryDao = new CategoryDao();
+		List<Category> categoryList = categoryDao.getCategorys();
+		//書籍総数を取得
+		BookDao bookDao = new BookDao();
+		Integer totalBooks = bookDao.getTotalBooks();
+		//書籍リスト
+		List<Book> bookList = bookDao.getBooksByName(
+				finalDate,
+				String.valueOf((Integer.parseInt(curPage)-1)*Integer.parseInt(pageSize)),
+				pageSize);
+		//ページ数を設定する
+		if((totalBooks%Integer.parseInt(pageSize)) == 0) {
+			totalpages = totalBooks/Integer.parseInt(pageSize);
+		}else
+			totalpages = totalBooks/Integer.parseInt(pageSize) + 1;
+		//書籍総数、書籍リストとカテゴリーリストを次の画面へセットする
+		req.setAttribute("totalpages", totalpages);
+		req.setAttribute("totalBooks", totalBooks);
+		req.setAttribute("bookList", bookList);
+		req.setAttribute("categoryList", categoryList);
+		//次の画面：デスカバリー画面（discovery.jsp）
+		ServletContext servletContext = getServletContext();
+		RequestDispatcher dispatcher = servletContext.
+					getRequestDispatcher("/jsp/searchResult.jsp");
+		dispatcher.forward(req, resp);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
